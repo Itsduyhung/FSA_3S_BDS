@@ -1,0 +1,6 @@
+@FSA_3S_HostAddress = http://localhost:5145
+
+GET {{FSA_3S_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
