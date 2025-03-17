@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
 
-namespace FSA_3S.Service
+namespace FSA_3S.Services.Service
 {
     public class EmailService
     {
@@ -30,7 +30,7 @@ namespace FSA_3S.Service
                 email.To.Add(new MailboxAddress("", toEmail));
                 email.Subject = subject;
 
-                email.Body = new TextPart(MimeKit.Text.TextFormat.Html) 
+                email.Body = new TextPart(MimeKit.Text.TextFormat.Html)
                 {
                     Text = message
                 };

@@ -1,26 +1,21 @@
-﻿using FSA_3S.Entity;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using BCrypt.Net;
+using FSA_3S.Models;
+using FSA_3S.Models.Entities;
 
 namespace FSA_3S.Controllers
 {
     [Route("api")]
     [ApiController]
-    public class AuthController : ControllerBase
+    public class AuthController(IConfiguration configuration, AppDbContext appDbContext) : ControllerBase
     {
-        private readonly IConfiguration _configuration;
-        private readonly AppDbContext _appDbContext;
-
-        public AuthController(IConfiguration configuration, AppDbContext appDbContext)
-        {
-            _configuration = configuration;
-            _appDbContext = appDbContext;
-        }
+        private readonly IConfiguration _configuration = configuration;
+        private readonly AppDbContext _appDbContext = appDbContext;
 
         // DTO nhận dữ liệu đăng nhập
         public class LoginRequest
@@ -73,7 +68,7 @@ namespace FSA_3S.Controllers
             }
         }
 
-        private string GenerateJwtToken(User user)
+        private string GenerateJwtToken(UserEntity user)
         {
            
             var key = _configuration["Jwt:Key"];
@@ -99,7 +94,7 @@ namespace FSA_3S.Controllers
             {
         new Claim(JwtRegisteredClaimNames.Sub, user.Email),
         new Claim(ClaimTypes.Role, user.Role ?? string.Empty),
-        new Claim("UserId", user.Id.ToString())
+        new Claim("UserId", user.UserId.ToString())
     };
 
             var token = new JwtSecurityToken(
@@ -115,8 +110,5 @@ namespace FSA_3S.Controllers
             // Trả về token dạng chuỗi
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
-
-
-
     }
 }

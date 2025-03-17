@@ -1,9 +1,10 @@
-﻿using FSA_3S.Entity;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using BCrypt.Net;
+using FSA_3S.Models;
+using FSA_3S.Models.Entities;
 
-namespace FSA_3S.Service
+namespace FSA_3S.Services.Service
 {
     public class UserService
     {
@@ -16,7 +17,7 @@ namespace FSA_3S.Service
             _emailService = emailService;
         }
 
-        public async Task<string> CreateEmployeeAsync(string email, string role)
+        public async Task<string> CreateEmployeeAsync(string email, string role, string fullName)
         {
             if (await _appDbContext.Users.AnyAsync(u => u.Email == email))
             {
@@ -25,13 +26,14 @@ namespace FSA_3S.Service
 
             string password = GenerateRandomPassword();
 
-            
+
             string mhPassword = HashPassword(password);
 
-            var user = new User
+            var user = new UserEntity
             {
                 Email = email,
-                Password = mhPassword,  
+                Password = mhPassword,
+                FullName = fullName,
                 Role = role,
                 CreateDate = DateTime.UtcNow
             };
@@ -51,7 +53,7 @@ namespace FSA_3S.Service
             return Guid.NewGuid().ToString("N").Substring(0, 8);
         }
 
- 
+
         private string HashPassword(string password)
         {
             return BCrypt.Net.BCrypt.HashPassword(password);
