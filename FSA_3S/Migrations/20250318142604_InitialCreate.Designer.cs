@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FSA_3S.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250317032652_InitialCreate")]
+    [Migration("20250318142604_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -102,56 +102,56 @@ namespace FSA_3S.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ContractId"));
 
                     b.Property<string>("ContractStatus")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("contractstatus");
 
                     b.Property<string>("ContractType")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("contracttype");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2")
-                        .HasColumnName("createdat");
+                        .HasColumnName("createdAt");
 
-                    b.Property<DateTime>("CreatedBy")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("CreatorUserId")
-                        .HasColumnType("int");
+                    b.Property<int>("CreatedBy")
+                        .HasColumnType("int")
+                        .HasColumnName("createdBy");
 
                     b.Property<int?>("CustomerId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("customerId");
 
-                    b.Property<DateOnly?>("EndDate")
-                        .HasColumnType("date")
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("datetime2")
                         .HasColumnName("enddate");
 
                     b.Property<int?>("RealEstateId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("realEstateId");
 
-                    b.Property<DateOnly?>("StartDate")
-                        .HasColumnType("date")
+                    b.Property<DateTime?>("StartDate")
+                        .HasColumnType("datetime2")
                         .HasColumnName("startdate");
 
-                    b.Property<DateTime>("UpdatedAt")
+                    b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2")
-                        .HasColumnName("updatedat");
+                        .HasColumnName("updatedAt");
 
                     b.Property<int?>("UpdatedBy")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UpdaterUserId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("updatedBy");
 
                     b.HasKey("ContractId");
 
-                    b.HasIndex("CreatorUserId");
+                    b.HasIndex("CreatedBy");
 
                     b.HasIndex("CustomerId");
 
                     b.HasIndex("RealEstateId");
 
-                    b.HasIndex("UpdaterUserId");
+                    b.HasIndex("UpdatedBy");
 
                     b.ToTable("contract");
                 });
@@ -175,8 +175,8 @@ namespace FSA_3S.Migrations
                         .HasColumnType("nvarchar(13)")
                         .HasColumnName("cccd");
 
-                    b.Property<DateOnly>("CreatedAt")
-                        .HasColumnType("date")
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2")
                         .HasColumnName("createdat");
 
                     b.Property<string>("CustomerType")
@@ -236,14 +236,14 @@ namespace FSA_3S.Migrations
                         .HasColumnType("nvarchar(5)")
                         .HasColumnName("likes");
 
-                    b.Property<int>("PropertyId")
+                    b.Property<int>("RealEstateId")
                         .HasColumnType("int");
 
                     b.HasKey("MappingRealEstateCustomerId");
 
                     b.HasIndex("CustomerId");
 
-                    b.HasIndex("PropertyId");
+                    b.HasIndex("RealEstateId");
 
                     b.ToTable("mappingrealestatecustomer");
                 });
@@ -351,12 +351,13 @@ namespace FSA_3S.Migrations
                         .HasColumnType("int")
                         .HasColumnName("bedrooms");
 
-                    b.Property<DateOnly?>("CreatedAt")
-                        .HasColumnType("date")
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2")
                         .HasColumnName("createdat");
 
-                    b.Property<DateTime>("CreatedBy")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("CreatedBy")
+                        .HasColumnType("int")
+                        .HasColumnName("createdby");
 
                     b.Property<int?>("CreatorUserId")
                         .HasColumnType("int");
@@ -390,12 +391,13 @@ namespace FSA_3S.Migrations
                         .HasColumnType("nvarchar(10)")
                         .HasColumnName("type");
 
-                    b.Property<DateOnly?>("UpdatedAt")
-                        .HasColumnType("date")
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2")
                         .HasColumnName("updatedat");
 
                     b.Property<int?>("UpdatedBy")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("updatedby");
 
                     b.Property<int?>("UpdaterUserId")
                         .HasColumnType("int");
@@ -536,7 +538,9 @@ namespace FSA_3S.Migrations
                 {
                     b.HasOne("FSA_3S.Models.Entities.UserEntity", "Creator")
                         .WithMany("ContractsCreated")
-                        .HasForeignKey("CreatorUserId");
+                        .HasForeignKey("CreatedBy")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("FSA_3S.Models.Entities.CustomerEntity", "Customer")
                         .WithMany("Contracts")
@@ -548,7 +552,7 @@ namespace FSA_3S.Migrations
 
                     b.HasOne("FSA_3S.Models.Entities.UserEntity", "Updater")
                         .WithMany("ContractsUpdated")
-                        .HasForeignKey("UpdaterUserId");
+                        .HasForeignKey("UpdatedBy");
 
                     b.Navigation("Creator");
 
@@ -567,15 +571,15 @@ namespace FSA_3S.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FSA_3S.Models.Entities.RealEstateEntity", "Property")
+                    b.HasOne("FSA_3S.Models.Entities.RealEstateEntity", "RealEstate")
                         .WithMany("MappingRealEstateCustomers")
-                        .HasForeignKey("PropertyId")
+                        .HasForeignKey("RealEstateId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Customer");
 
-                    b.Navigation("Property");
+                    b.Navigation("RealEstate");
                 });
 
             modelBuilder.Entity("FSA_3S.Models.Entities.MappingUserAppointmentEntity", b =>

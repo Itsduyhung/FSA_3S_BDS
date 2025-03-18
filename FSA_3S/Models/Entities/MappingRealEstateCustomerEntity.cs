@@ -14,9 +14,9 @@ namespace FSA_3S.Models.Entities
         public int CustomerId { get; set; }
         public CustomerEntity Customer { get; set; } = null!;
 
-        [ForeignKey("PropertyId")]
-        public int PropertyId { get; set; }
-        public RealEstateEntity Property { get; set; } = null!;
+        [ForeignKey("RealEstateId")]
+        public int RealEstateId { get; set; }
+        public RealEstateEntity RealEstate { get; set; } = null!;
 
         [Column("likes")]
         [StringLength(5)]

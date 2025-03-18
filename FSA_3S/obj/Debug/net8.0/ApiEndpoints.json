@@ -42,6 +42,58 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "FSA_3S.Controllers.ContractController",
+    "Method": "DeleteContract",
+    "RelativePath": "api/Contract/{contractId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "contractId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FSA_3S.Controllers.ContractController",
+    "Method": "UpdateContractStatus",
+    "RelativePath": "api/Contract/Change_Contract_Status_expried",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FSA_3S.Controllers.ContractController",
+    "Method": "CreateContract",
+    "RelativePath": "api/Contract/Created_Contract",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "FSA_3S.Models.Requests.ContractRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FSA_3S.Controllers.ContractController",
+    "Method": "GetAllContract",
+    "RelativePath": "api/Contract/Get_Contract",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "FSA_3S.Controllers.AuthController",
     "Method": "UserLogin",
     "RelativePath": "api/dangnhap",

@@ -58,6 +58,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 // --- 4. Cấu hình Swagger và Controllers ---
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddHttpContextAccessor();
+
 
 builder.Services.AddSwaggerGen(options =>
 {

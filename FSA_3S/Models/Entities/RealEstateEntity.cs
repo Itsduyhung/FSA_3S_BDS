@@ -43,19 +43,21 @@ namespace FSA_3S.Models.Entities
         [Column("description")]
         public string? Description { get; set; }
 
-        [ForeignKey("CreatedBy")]
-        public DateTime CreatedBy { get; set; }
+        // Chuyển về kiểu int cho khóa ngoại
+        [Column("createdby")]
+        public int CreatedBy { get; set; }
         public UserEntity? Creator { get; set; }
 
-        [ForeignKey("UpdatedBy")]
+        [Column("updatedby")]
         public int? UpdatedBy { get; set; }
         public UserEntity? Updater { get; set; }
 
+        // Chuyển về kiểu DateTime thay vì DateOnly
         [Column("createdat")]
-        public DateOnly? CreatedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
 
         [Column("updatedat")]
-        public DateOnly? UpdatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
 
         public List<MappingRealEstateCustomerEntity>? MappingRealEstateCustomers { get; set; }
         public List<ContractEntity>? Contracts { get; set; }

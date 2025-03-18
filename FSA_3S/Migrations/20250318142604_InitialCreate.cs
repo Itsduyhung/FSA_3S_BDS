@@ -25,7 +25,7 @@ namespace FSA_3S.Migrations
                     cccd = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: true),
                     customertype = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
                     notes = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    createdat = table.Column<DateOnly>(type: "date", nullable: false)
+                    createdat = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -168,12 +168,12 @@ namespace FSA_3S.Migrations
                     image_path = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
                     address = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedBy = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    createdby = table.Column<int>(type: "int", nullable: false),
                     CreatorUserId = table.Column<int>(type: "int", nullable: true),
-                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
+                    updatedby = table.Column<int>(type: "int", nullable: true),
                     UpdaterUserId = table.Column<int>(type: "int", nullable: true),
-                    createdat = table.Column<DateOnly>(type: "date", nullable: true),
-                    updatedat = table.Column<DateOnly>(type: "date", nullable: true)
+                    createdat = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    updatedat = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -222,40 +222,39 @@ namespace FSA_3S.Migrations
                 {
                     contractId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    RealEstateId = table.Column<int>(type: "int", nullable: true),
-                    CustomerId = table.Column<int>(type: "int", nullable: true),
-                    contracttype = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    contractstatus = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    startdate = table.Column<DateOnly>(type: "date", nullable: true),
-                    enddate = table.Column<DateOnly>(type: "date", nullable: true),
-                    CreatedBy = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatorUserId = table.Column<int>(type: "int", nullable: true),
-                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
-                    UpdaterUserId = table.Column<int>(type: "int", nullable: true),
-                    createdat = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    updatedat = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    realEstateId = table.Column<int>(type: "int", nullable: true),
+                    customerId = table.Column<int>(type: "int", nullable: true),
+                    contracttype = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    contractstatus = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    startdate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    enddate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    createdBy = table.Column<int>(type: "int", nullable: false),
+                    updatedBy = table.Column<int>(type: "int", nullable: true),
+                    createdAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    updatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_contract", x => x.contractId);
                     table.ForeignKey(
-                        name: "FK_contract_customer_CustomerId",
-                        column: x => x.CustomerId,
+                        name: "FK_contract_customer_customerId",
+                        column: x => x.customerId,
                         principalTable: "customer",
                         principalColumn: "customerId");
                     table.ForeignKey(
-                        name: "FK_contract_realestate_RealEstateId",
-                        column: x => x.RealEstateId,
+                        name: "FK_contract_realestate_realEstateId",
+                        column: x => x.realEstateId,
                         principalTable: "realestate",
                         principalColumn: "realEstateId");
                     table.ForeignKey(
-                        name: "FK_contract_user_CreatorUserId",
-                        column: x => x.CreatorUserId,
+                        name: "FK_contract_user_createdBy",
+                        column: x => x.createdBy,
                         principalTable: "user",
-                        principalColumn: "userId");
+                        principalColumn: "userId",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_contract_user_UpdaterUserId",
-                        column: x => x.UpdaterUserId,
+                        name: "FK_contract_user_updatedBy",
+                        column: x => x.updatedBy,
                         principalTable: "user",
                         principalColumn: "userId");
                 });
@@ -267,7 +266,7 @@ namespace FSA_3S.Migrations
                     mappingRealEstateCustomerId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CustomerId = table.Column<int>(type: "int", nullable: false),
-                    PropertyId = table.Column<int>(type: "int", nullable: false),
+                    RealEstateId = table.Column<int>(type: "int", nullable: false),
                     likes = table.Column<string>(type: "nvarchar(5)", maxLength: 5, nullable: true),
                     comment = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -281,8 +280,8 @@ namespace FSA_3S.Migrations
                         principalColumn: "customerId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_mappingrealestatecustomer_realestate_PropertyId",
-                        column: x => x.PropertyId,
+                        name: "FK_mappingrealestatecustomer_realestate_RealEstateId",
+                        column: x => x.RealEstateId,
                         principalTable: "realestate",
                         principalColumn: "realEstateId",
                         onDelete: ReferentialAction.Cascade);
@@ -304,24 +303,24 @@ namespace FSA_3S.Migrations
                 column: "UpdaterUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_contract_CreatorUserId",
+                name: "IX_contract_createdBy",
                 table: "contract",
-                column: "CreatorUserId");
+                column: "createdBy");
 
             migrationBuilder.CreateIndex(
-                name: "IX_contract_CustomerId",
+                name: "IX_contract_customerId",
                 table: "contract",
-                column: "CustomerId");
+                column: "customerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_contract_RealEstateId",
+                name: "IX_contract_realEstateId",
                 table: "contract",
-                column: "RealEstateId");
+                column: "realEstateId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_contract_UpdaterUserId",
+                name: "IX_contract_updatedBy",
                 table: "contract",
-                column: "UpdaterUserId");
+                column: "updatedBy");
 
             migrationBuilder.CreateIndex(
                 name: "IX_mappingrealestatecustomer_CustomerId",
@@ -329,9 +328,9 @@ namespace FSA_3S.Migrations
                 column: "CustomerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_mappingrealestatecustomer_PropertyId",
+                name: "IX_mappingrealestatecustomer_RealEstateId",
                 table: "mappingrealestatecustomer",
-                column: "PropertyId");
+                column: "RealEstateId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_mappinguserappointment_AppointmentId",

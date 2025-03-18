@@ -160,7 +160,6 @@ D:\CS\project_3s\FSA_3S\bin\Debug\net8.0\FSA_3S.dll
 D:\CS\project_3s\FSA_3S\bin\Debug\net8.0\FSA_3S.pdb
 D:\CS\project_3s\FSA_3S\bin\Debug\net8.0\Azure.Core.dll
 D:\CS\project_3s\FSA_3S\bin\Debug\net8.0\Azure.Identity.dll
-D:\CS\project_3s\FSA_3S\bin\Debug\net8.0\DevOne.Security.Cryptography.BCrypt.dll
 D:\CS\project_3s\FSA_3S\bin\Debug\net8.0\BCrypt.Net-Next.dll
 D:\CS\project_3s\FSA_3S\bin\Debug\net8.0\BouncyCastle.Cryptography.dll
 D:\CS\project_3s\FSA_3S\bin\Debug\net8.0\Humanizer.dll

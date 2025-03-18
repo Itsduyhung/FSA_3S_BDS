@@ -1,26 +1,19 @@
 ﻿using FSA_3S.Enum;
-using System.ComponentModel.DataAnnotations;
 
-namespace FSA_3S.Models.Requests
+namespace FSA_3S.DTOs
 {
-    public class ContractRequest
+    public class ContractDTO
     {
-        [Required]
+        public int ContractId { get; set; }
         public int? RealEstateId { get; set; }
-
-        [Required]
         public int? CustomerId { get; set; }
-
-        [Required]
         public ContractTypeEnum ContractType { get; set; }
-
-        [Required]
         public ContractStatusEnum ContractStatus { get; set; }
-
-        [Required]
         public DateTime? StartDate { get; set; }
-
-        [Required]
         public DateTime? EndDate { get; set; }
+        public int CreatedBy { get; set; }
+        public int? UpdatedBy { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
     }
 }

@@ -89,13 +89,13 @@ namespace FSA_3S.Controllers
             // Chuyển key thành mảng byte
             var keyBytes = Encoding.UTF8.GetBytes(key);
 
-            
+
             var claims = new[]
             {
-        new Claim(JwtRegisteredClaimNames.Sub, user.Email),
-        new Claim(ClaimTypes.Role, user.Role ?? string.Empty),
-        new Claim("UserId", user.UserId.ToString())
-    };
+    new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()), // Lưu UserId dưới dạng int
+    new Claim(ClaimTypes.Email, user.Email), // Lưu Email vào ClaimTypes.Email
+    new Claim(ClaimTypes.Role, user.Role ?? string.Empty) // Lưu vai trò vào ClaimTypes.Role
+};
 
             var token = new JwtSecurityToken(
                 issuer: issuer,

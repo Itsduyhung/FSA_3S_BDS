@@ -43,8 +43,9 @@ namespace FSA_3S.Models.Entities
         [Column("notes")]
         public string? Notes { get; set; }
 
+        // Chuyển từ DateOnly thành DateTime
         [Column("createdat")]
-        public DateOnly CreatedAt { get; set; }
+        public DateTime CreatedAt { get; set; }
 
         public List<MappingRealEstateCustomerEntity>? MappingRealEstateCustomers { get; set; }
         public List<ContractEntity>? Contracts { get; set; }

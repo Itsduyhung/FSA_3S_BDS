@@ -31,6 +31,14 @@ namespace FSA_3S.Models
             modelBuilder.Entity<UserEntity>()
                 .Property(u => u.Status)
                 .HasConversion(new EnumToStringConverter<UserStatusEnum>());
+
+            modelBuilder.Entity<ContractEntity>()
+                .Property(u => u.ContractStatus)
+                .HasConversion(new EnumToStringConverter<ContractStatusEnum>());
+
+            modelBuilder.Entity<ContractEntity>()
+    .Property(u => u.ContractType)
+    .HasConversion(new EnumToStringConverter<ContractTypeEnum>());
         }
 
         public DbSet<UserEntity> Users { get; set; }

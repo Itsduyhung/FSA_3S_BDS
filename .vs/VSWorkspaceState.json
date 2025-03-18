@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\FSA_3S",
+    "\\FSA_3S\\Models",
+    "\\FSA_3S\\Models\\Entities",
+    "\\FSA_3S\\Properties",
+    "\\FSA_3S\\Repositories",
+    "\\FSA_3S\\Repositories\\Interface",
+    "\\FSA_3S\\Repositories\\Repository",
+    "\\FSA_3S\\Services",
+    "\\FSA_3S\\Services\\Interface"
+  ],
+  "PreviewInSolutionExplorer": false
+}

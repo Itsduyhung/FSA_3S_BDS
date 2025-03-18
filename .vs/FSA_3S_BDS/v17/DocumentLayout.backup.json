@@ -1,29 +1,213 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Laptop\\source\\repos\\FSA_3S_BDS\\",
+  "WorkspaceRootPath": "D:\\CS\\project_3s\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|c:\\users\\laptop\\source\\repos\\fsa_3s_bds\\fsa_3s\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|d:\\cs\\project_3s\\fsa_3s\\controllers\\contractcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\controllers\\contractcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|d:\\cs\\project_3s\\fsa_3s\\services\\interface\\istaffservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\services\\interface\\istaffservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|d:\\cs\\project_3s\\fsa_3s\\services\\interface\\icontractservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\services\\interface\\icontractservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|d:\\cs\\project_3s\\fsa_3s\\services\\service\\contractservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\services\\service\\contractservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|d:\\cs\\project_3s\\fsa_3s\\repositories\\interface\\icontractrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\repositories\\interface\\icontractrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|d:\\cs\\project_3s\\fsa_3s\\repositories\\repository\\contractrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\repositories\\repository\\contractrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|d:\\cs\\project_3s\\fsa_3s\\models\\entities\\contractentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\models\\entities\\contractentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|d:\\cs\\project_3s\\fsa_3s\\data\\configuration\\contractconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\data\\configuration\\contractconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|d:\\cs\\project_3s\\fsa_3s\\models\\entities\\realestateentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\models\\entities\\realestateentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|d:\\cs\\project_3s\\fsa_3s\\models\\entities\\mappingrealestatecustomerentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\models\\entities\\mappingrealestatecustomerentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|d:\\cs\\project_3s\\fsa_3s\\models\\respone\\contractrespone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\models\\respone\\contractrespone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|d:\\cs\\project_3s\\fsa_3s\\dtos\\contractdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\dtos\\contractdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|d:\\cs\\project_3s\\fsa_3s\\services\\service\\staffservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\services\\service\\staffservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|d:\\cs\\project_3s\\fsa_3s\\controllers\\staffcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\controllers\\staffcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|d:\\cs\\project_3s\\fsa_3s\\models\\requests\\contractrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\models\\requests\\contractrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|d:\\cs\\project_3s\\fsa_3s\\models\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\models\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|d:\\cs\\project_3s\\fsa_3s\\fsa_3s.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\fsa_3s.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|d:\\cs\\project_3s\\fsa_3s\\data\\configuration\\mappingrealestatecustomerconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\data\\configuration\\mappingrealestatecustomerconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|d:\\cs\\project_3s\\fsa_3s\\enum\\contractstatusenum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\enum\\contractstatusenum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|d:\\cs\\project_3s\\fsa_3s\\enum\\userenum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\enum\\userenum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|d:\\cs\\project_3s\\fsa_3s\\models\\entities\\userentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\models\\entities\\userentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|d:\\cs\\project_3s\\fsa_3s\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|d:\\cs\\project_3s\\fsa_3s\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|c:\\users\\laptop\\source\\repos\\fsa_3s_bds\\fsa_3s\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|d:\\cs\\project_3s\\fsa_3s\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|c:\\users\\laptop\\source\\repos\\fsa_3s_bds\\fsa_3s\\service\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\service\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|d:\\cs\\project_3s\\fsa_3s\\models\\entities\\customerentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\models\\entities\\customerentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|d:\\cs\\project_3s\\fsa_3s\\data\\configuration\\realestateconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\data\\configuration\\realestateconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|d:\\cs\\project_3s\\fsa_3s\\data\\configuration\\customerconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\data\\configuration\\customerconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|d:\\cs\\project_3s\\fsa_3s\\dtos\\staffdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\dtos\\staffdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\CS\\project_3s\\FSA_3S\\Migrations\\20250318080635_InitialCreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:FSA_3S\\Migrations\\20250318080635_InitialCreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\CS\\project_3s\\FSA_3S\\Migrations\\20250318080139_RemoveCreatedByColumn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:FSA_3S\\Migrations\\20250318080139_RemoveCreatedByColumn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\CS\\project_3s\\FSA_3S\\Migrations\\20250318080035_UpdateMapping.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:FSA_3S\\Migrations\\20250318080035_UpdateMapping.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\CS\\project_3s\\FSA_3S\\Migrations\\20250318074707_UpdateMappingRealEstateCustomer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:FSA_3S\\Migrations\\20250318074707_UpdateMappingRealEstateCustomer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|d:\\cs\\project_3s\\fsa_3s\\models\\entities\\mappingusernotificationentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\models\\entities\\mappingusernotificationentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|d:\\cs\\project_3s\\fsa_3s\\models\\entities\\mappinguserappointmententity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\models\\entities\\mappinguserappointmententity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|d:\\cs\\project_3s\\fsa_3s\\repositories\\repository\\staffrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\repositories\\repository\\staffrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|d:\\cs\\project_3s\\fsa_3s\\repositories\\interface\\istaffrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\repositories\\interface\\istaffrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|d:\\cs\\project_3s\\fsa_3s\\models\\respone\\unablestaffrespone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\models\\respone\\unablestaffrespone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|d:\\cs\\project_3s\\fsa_3s\\data\\configuration\\userconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\data\\configuration\\userconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|d:\\cs\\project_3s\\fsa_3s\\controllers\\reportcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\controllers\\reportcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|d:\\cs\\project_3s\\fsa_3s\\services\\service\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\services\\service\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|d:\\cs\\project_3s\\fsa_3s\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|d:\\cs\\project_3s\\fsa_3s\\services\\service\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\services\\service\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|d:\\cs\\project_3s\\fsa_3s\\models\\entities\\appointmententity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\models\\entities\\appointmententity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|d:\\cs\\project_3s\\fsa_3s\\services\\service\\reportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\services\\service\\reportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|d:\\cs\\project_3s\\fsa_3s\\data\\configuration\\clauseconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\data\\configuration\\clauseconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|d:\\cs\\project_3s\\fsa_3s\\data\\configuration\\appointmentconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\data\\configuration\\appointmentconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|d:\\cs\\project_3s\\fsa_3s\\models\\entities\\reportentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\models\\entities\\reportentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|d:\\cs\\project_3s\\fsa_3s\\models\\entities\\paymententity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\models\\entities\\paymententity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|d:\\cs\\project_3s\\fsa_3s\\models\\entities\\notificationentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\models\\entities\\notificationentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|d:\\cs\\project_3s\\fsa_3s\\models\\entities\\clauseentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\models\\entities\\clauseentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|d:\\cs\\project_3s\\fsa_3s\\data\\configuration\\mappingusernotificationentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\data\\configuration\\mappingusernotificationentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|c:\\users\\laptop\\source\\repos\\fsa_3s_bds\\fsa_3s\\entity\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\entity\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|c:\\users\\laptop\\source\\repos\\fsa_3s_bds\\fsa_3s\\entity\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FCD91818-F402-4E6F-99A2-9D4EB664D10E}|FSA_3S\\FSA_3S.csproj|solutionrelative:fsa_3s\\entity\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -37,106 +221,708 @@
           "Children": [
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
-            },
-            {
-              "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            }
-          ]
-        },
-        {
-          "DockedWidth": 29,
-          "SelectedChildIndex": 2,
-          "Children": [
+            },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
             },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "C:\\Users\\Laptop\\source\\repos\\FSA_3S_BDS\\FSA_3S\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "FSA_3S\\Controllers\\AuthController.cs",
-              "ToolTip": "C:\\Users\\Laptop\\source\\repos\\FSA_3S_BDS\\FSA_3S\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "FSA_3S\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T02:34:34.48Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 339,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AppDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\Laptop\\source\\repos\\FSA_3S_BDS\\FSA_3S\\Entity\\AppDbContext.cs",
-              "RelativeDocumentMoniker": "FSA_3S\\Entity\\AppDbContext.cs",
-              "ToolTip": "C:\\Users\\Laptop\\source\\repos\\FSA_3S_BDS\\FSA_3S\\Entity\\AppDbContext.cs",
-              "RelativeToolTip": "FSA_3S\\Entity\\AppDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "ContractService.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\Services\\Service\\ContractService.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\Services\\Service\\ContractService.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\Services\\Service\\ContractService.cs",
+              "RelativeToolTip": "FSA_3S\\Services\\Service\\ContractService.cs",
+              "ViewState": "AgIAAJUAAAAAAAAAAAAgwLEAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T01:42:48.844Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AdminController.cs",
-              "DocumentMoniker": "C:\\Users\\Laptop\\source\\repos\\FSA_3S_BDS\\FSA_3S\\Controllers\\AdminController.cs",
-              "RelativeDocumentMoniker": "FSA_3S\\Controllers\\AdminController.cs",
-              "ToolTip": "C:\\Users\\Laptop\\source\\repos\\FSA_3S_BDS\\FSA_3S\\Controllers\\AdminController.cs",
-              "RelativeToolTip": "FSA_3S\\Controllers\\AdminController.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAAwBoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-10T01:40:48.247Z",
+              "WhenOpened": "2025-03-17T03:09:32.533Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "EmailService.cs",
-              "DocumentMoniker": "C:\\Users\\Laptop\\source\\repos\\FSA_3S_BDS\\FSA_3S\\Service\\EmailService.cs",
-              "RelativeDocumentMoniker": "FSA_3S\\Service\\EmailService.cs",
-              "ToolTip": "C:\\Users\\Laptop\\source\\repos\\FSA_3S_BDS\\FSA_3S\\Service\\EmailService.cs",
-              "RelativeToolTip": "FSA_3S\\Service\\EmailService.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAAwBIAAAAdAAAAAAAAAA==",
+              "Title": "IContractService.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\Services\\Interface\\IContractService.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\Services\\Interface\\IContractService.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\Services\\Interface\\IContractService.cs",
+              "RelativeToolTip": "FSA_3S\\Services\\Interface\\IContractService.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAA/wCAAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-09T17:34:22.698Z",
+              "WhenOpened": "2025-03-17T03:09:07.629Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Microsoft.Common.CurrentVersion.targets",
-              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
-              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
-              "ViewState": "AgIAAMgUAAAAAAAAAAArwNsUAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
-              "WhenOpened": "2025-03-09T17:08:52.157Z",
+              "DocumentIndex": 0,
+              "Title": "ContractController.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\Controllers\\ContractController.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\Controllers\\ContractController.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\Controllers\\ContractController.cs",
+              "RelativeToolTip": "FSA_3S\\Controllers\\ContractController.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAwB8AAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-18T12:46:47.128Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IContractRepository.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\Repositories\\Interface\\IContractRepository.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\Repositories\\Interface\\IContractRepository.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\Repositories\\Interface\\IContractRepository.cs",
+              "RelativeToolTip": "FSA_3S\\Repositories\\Interface\\IContractRepository.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAxwB0AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-17T03:06:56.794Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "User.cs",
-              "DocumentMoniker": "C:\\Users\\Laptop\\source\\repos\\FSA_3S_BDS\\FSA_3S\\Entity\\User.cs",
-              "RelativeDocumentMoniker": "FSA_3S\\Entity\\User.cs",
-              "ToolTip": "C:\\Users\\Laptop\\source\\repos\\FSA_3S_BDS\\FSA_3S\\Entity\\User.cs",
-              "RelativeToolTip": "FSA_3S\\Entity\\User.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAwAAAAAAAAAA==",
+              "Title": "ContractRepository.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\Repositories\\Repository\\ContractRepository.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\Repositories\\Repository\\ContractRepository.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\Repositories\\Repository\\ContractRepository.cs",
+              "RelativeToolTip": "FSA_3S\\Repositories\\Repository\\ContractRepository.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAAAswD0AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-09T16:58:11.739Z",
+              "WhenOpened": "2025-03-17T03:07:52.77Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ContractEntity.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\Models\\Entities\\ContractEntity.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\Models\\Entities\\ContractEntity.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\Models\\Entities\\ContractEntity.cs",
+              "RelativeToolTip": "FSA_3S\\Models\\Entities\\ContractEntity.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAADQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-13T02:18:42.072Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ContractConfiguration.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\Data\\Configuration\\ContractConfiguration.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\Data\\Configuration\\ContractConfiguration.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\Data\\Configuration\\ContractConfiguration.cs",
+              "RelativeToolTip": "FSA_3S\\Data\\Configuration\\ContractConfiguration.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-18T08:28:00.241Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "RealEstateEntity.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\Models\\Entities\\RealEstateEntity.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\Models\\Entities\\RealEstateEntity.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\Models\\Entities\\RealEstateEntity.cs",
+              "RelativeToolTip": "FSA_3S\\Models\\Entities\\RealEstateEntity.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAqwEAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-13T02:22:43.043Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "MappingRealEstateCustomerEntity.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\Models\\Entities\\MappingRealEstateCustomerEntity.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\Models\\Entities\\MappingRealEstateCustomerEntity.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\Models\\Entities\\MappingRealEstateCustomerEntity.cs",
+              "RelativeToolTip": "FSA_3S\\Models\\Entities\\MappingRealEstateCustomerEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-13T02:20:11.095Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ContractRespone.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\Models\\Respone\\ContractRespone.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\Models\\Respone\\ContractRespone.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\Models\\Respone\\ContractRespone.cs",
+              "RelativeToolTip": "FSA_3S\\Models\\Respone\\ContractRespone.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAAwAoAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-18T10:02:54.726Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ContractDTO.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\DTOs\\ContractDTO.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\DTOs\\ContractDTO.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\DTOs\\ContractDTO.cs",
+              "RelativeToolTip": "FSA_3S\\DTOs\\ContractDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-18T13:51:50.612Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "ContractRequest.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\Models\\Requests\\ContractRequest.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\Models\\Requests\\ContractRequest.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\Models\\Requests\\ContractRequest.cs",
+              "RelativeToolTip": "FSA_3S\\Models\\Requests\\ContractRequest.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAAAA4AAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-17T03:05:23.376Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "MappingRealEstateCustomerConfiguration.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\Data\\Configuration\\MappingRealEstateCustomerConfiguration.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\Data\\Configuration\\MappingRealEstateCustomerConfiguration.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\Data\\Configuration\\MappingRealEstateCustomerConfiguration.cs",
+              "RelativeToolTip": "FSA_3S\\Data\\Configuration\\MappingRealEstateCustomerConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-18T08:28:24.134Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\Models\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\Models\\AppDbContext.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\Models\\AppDbContext.cs",
+              "RelativeToolTip": "FSA_3S\\Models\\AppDbContext.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAAwCgAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-12T02:13:43.12Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "FSA_3S",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\FSA_3S.csproj",
+              "RelativeDocumentMoniker": "FSA_3S\\FSA_3S.csproj",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\FSA_3S.csproj",
+              "RelativeToolTip": "FSA_3S\\FSA_3S.csproj",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-03-18T11:53:20.525Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "ContractStatusEnum.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\Enum\\ContractStatusEnum.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\Enum\\ContractStatusEnum.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\Enum\\ContractStatusEnum.cs",
+              "RelativeToolTip": "FSA_3S\\Enum\\ContractStatusEnum.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-18T09:54:01.276Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "UserEnum.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\Enum\\UserEnum.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\Enum\\UserEnum.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\Enum\\UserEnum.cs",
+              "RelativeToolTip": "FSA_3S\\Enum\\UserEnum.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-14T08:36:27.499Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\Controllers\\AuthController.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "FSA_3S\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAAFAAAAAAAAAAAAAcwGEAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-13T14:02:34.005Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "UserEntity.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\Models\\Entities\\UserEntity.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\Models\\Entities\\UserEntity.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\Models\\Entities\\UserEntity.cs",
+              "RelativeToolTip": "FSA_3S\\Models\\Entities\\UserEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFEAAABYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-13T04:18:38.443Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "CustomerEntity.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\Models\\Entities\\CustomerEntity.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\Models\\Entities\\CustomerEntity.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\Models\\Entities\\CustomerEntity.cs",
+              "RelativeToolTip": "FSA_3S\\Models\\Entities\\CustomerEntity.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAywDMAAABCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-13T02:19:24.278Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\Program.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\Program.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\Program.cs",
+              "RelativeToolTip": "FSA_3S\\Program.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAMwCIAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T03:23:28.823Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "AdminController.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\Controllers\\AdminController.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\Controllers\\AdminController.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\Controllers\\AdminController.cs",
+              "RelativeToolTip": "FSA_3S\\Controllers\\AdminController.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAA7wBoAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-13T04:12:06.303Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "RealEstateConfiguration.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\Data\\Configuration\\RealEstateConfiguration.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\Data\\Configuration\\RealEstateConfiguration.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\Data\\Configuration\\RealEstateConfiguration.cs",
+              "RelativeToolTip": "FSA_3S\\Data\\Configuration\\RealEstateConfiguration.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-18T08:28:31.048Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "CustomerConfiguration.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\Data\\Configuration\\CustomerConfiguration.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\Data\\Configuration\\CustomerConfiguration.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\Data\\Configuration\\CustomerConfiguration.cs",
+              "RelativeToolTip": "FSA_3S\\Data\\Configuration\\CustomerConfiguration.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAQwAIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-13T02:38:47.274Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "StaffDTO.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\DTOs\\StaffDTO.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\DTOs\\StaffDTO.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\DTOs\\StaffDTO.cs",
+              "RelativeToolTip": "FSA_3S\\DTOs\\StaffDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-13T15:53:01.686Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "20250318080635_InitialCreate.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\Migrations\\20250318080635_InitialCreate.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\Migrations\\20250318080635_InitialCreate.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\Migrations\\20250318080635_InitialCreate.cs",
+              "RelativeToolTip": "FSA_3S\\Migrations\\20250318080635_InitialCreate.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-18T08:06:35.248Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "20250318080139_RemoveCreatedByColumn.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\Migrations\\20250318080139_RemoveCreatedByColumn.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\Migrations\\20250318080139_RemoveCreatedByColumn.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\Migrations\\20250318080139_RemoveCreatedByColumn.cs",
+              "RelativeToolTip": "FSA_3S\\Migrations\\20250318080139_RemoveCreatedByColumn.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-18T08:01:39.94Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "20250318080035_UpdateMapping.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\Migrations\\20250318080035_UpdateMapping.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\Migrations\\20250318080035_UpdateMapping.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\Migrations\\20250318080035_UpdateMapping.cs",
+              "RelativeToolTip": "FSA_3S\\Migrations\\20250318080035_UpdateMapping.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-18T08:00:35.923Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "20250318074707_UpdateMappingRealEstateCustomer.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\Migrations\\20250318074707_UpdateMappingRealEstateCustomer.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\Migrations\\20250318074707_UpdateMappingRealEstateCustomer.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\Migrations\\20250318074707_UpdateMappingRealEstateCustomer.cs",
+              "RelativeToolTip": "FSA_3S\\Migrations\\20250318074707_UpdateMappingRealEstateCustomer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-18T07:47:07.405Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "MappingUserNotificationEntity.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\Models\\Entities\\MappingUserNotificationEntity.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\Models\\Entities\\MappingUserNotificationEntity.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\Models\\Entities\\MappingUserNotificationEntity.cs",
+              "RelativeToolTip": "FSA_3S\\Models\\Entities\\MappingUserNotificationEntity.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAUwBQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-13T02:21:11.114Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "MappingUserAppointmentEntity.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\Models\\Entities\\MappingUserAppointmentEntity.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\Models\\Entities\\MappingUserAppointmentEntity.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\Models\\Entities\\MappingUserAppointmentEntity.cs",
+              "RelativeToolTip": "FSA_3S\\Models\\Entities\\MappingUserAppointmentEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-13T02:20:46.648Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "StaffRepository.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\Repositories\\Repository\\StaffRepository.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\Repositories\\Repository\\StaffRepository.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\Repositories\\Repository\\StaffRepository.cs",
+              "RelativeToolTip": "FSA_3S\\Repositories\\Repository\\StaffRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACoAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-13T15:47:34.108Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "IStaffRepository.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\Repositories\\Interface\\IStaffRepository.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\Repositories\\Interface\\IStaffRepository.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\Repositories\\Interface\\IStaffRepository.cs",
+              "RelativeToolTip": "FSA_3S\\Repositories\\Interface\\IStaffRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-13T15:46:56.933Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "UnableStaffRespone.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\Models\\Respone\\UnableStaffRespone.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\Models\\Respone\\UnableStaffRespone.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\Models\\Respone\\UnableStaffRespone.cs",
+              "RelativeToolTip": "FSA_3S\\Models\\Respone\\UnableStaffRespone.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-14T09:46:41.015Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "UserConfiguration.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\Data\\Configuration\\UserConfiguration.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\Data\\Configuration\\UserConfiguration.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\Data\\Configuration\\UserConfiguration.cs",
+              "RelativeToolTip": "FSA_3S\\Data\\Configuration\\UserConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-13T03:39:27.917Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "ReportController.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\Controllers\\ReportController.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\Controllers\\ReportController.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\Controllers\\ReportController.cs",
+              "RelativeToolTip": "FSA_3S\\Controllers\\ReportController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-13T15:15:02.844Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\appsettings.json",
+              "RelativeDocumentMoniker": "FSA_3S\\appsettings.json",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\appsettings.json",
+              "RelativeToolTip": "FSA_3S\\appsettings.json",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAIwAkAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-03-11T02:34:49.378Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "EmailService.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\Services\\Service\\EmailService.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\Services\\Service\\EmailService.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\Services\\Service\\EmailService.cs",
+              "RelativeToolTip": "FSA_3S\\Services\\Service\\EmailService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAIBJwDQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T03:28:30.757Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "AppointmentEntity.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\Models\\Entities\\AppointmentEntity.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\Models\\Entities\\AppointmentEntity.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\Models\\Entities\\AppointmentEntity.cs",
+              "RelativeToolTip": "FSA_3S\\Models\\Entities\\AppointmentEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-13T02:17:18.651Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\Services\\Service\\UserService.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\Services\\Service\\UserService.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\Services\\Service\\UserService.cs",
+              "RelativeToolTip": "FSA_3S\\Services\\Service\\UserService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAIBJwAgAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T03:28:42.169Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "ReportService.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\Services\\Service\\ReportService.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\Services\\Service\\ReportService.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\Services\\Service\\ReportService.cs",
+              "RelativeToolTip": "FSA_3S\\Services\\Service\\ReportService.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAIwBoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-12T09:00:12.049Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "AppointmentConfiguration.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\Data\\Configuration\\AppointmentConfiguration.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\Data\\Configuration\\AppointmentConfiguration.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\Data\\Configuration\\AppointmentConfiguration.cs",
+              "RelativeToolTip": "FSA_3S\\Data\\Configuration\\AppointmentConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-13T02:37:33.474Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "ClauseConfiguration.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\Data\\Configuration\\ClauseConfiguration.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\Data\\Configuration\\ClauseConfiguration.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\Data\\Configuration\\ClauseConfiguration.cs",
+              "RelativeToolTip": "FSA_3S\\Data\\Configuration\\ClauseConfiguration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-13T02:37:54.891Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "ReportEntity.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\Models\\Entities\\ReportEntity.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\Models\\Entities\\ReportEntity.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\Models\\Entities\\ReportEntity.cs",
+              "RelativeToolTip": "FSA_3S\\Models\\Entities\\ReportEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-12T08:53:54.329Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 47,
+              "Title": "PaymentEntity.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\Models\\Entities\\PaymentEntity.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\Models\\Entities\\PaymentEntity.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\Models\\Entities\\PaymentEntity.cs",
+              "RelativeToolTip": "FSA_3S\\Models\\Entities\\PaymentEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-13T02:22:16.377Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 48,
+              "Title": "NotificationEntity.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\Models\\Entities\\NotificationEntity.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\Models\\Entities\\NotificationEntity.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\Models\\Entities\\NotificationEntity.cs",
+              "RelativeToolTip": "FSA_3S\\Models\\Entities\\NotificationEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-13T02:21:43.76Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 49,
+              "Title": "ClauseEntity.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\Models\\Entities\\ClauseEntity.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\Models\\Entities\\ClauseEntity.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\Models\\Entities\\ClauseEntity.cs",
+              "RelativeToolTip": "FSA_3S\\Models\\Entities\\ClauseEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-13T02:18:06.744Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 50,
+              "Title": "MappingUserNotificationEntity.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\Data\\Configuration\\MappingUserNotificationEntity.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\Data\\Configuration\\MappingUserNotificationEntity.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\Data\\Configuration\\MappingUserNotificationEntity.cs",
+              "RelativeToolTip": "FSA_3S\\Data\\Configuration\\MappingUserNotificationEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-13T02:42:52.208Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 51,
+              "Title": "Microsoft.Common.CurrentVersion.targets",
+              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "ViewState": "AgIAAK8UAAAAAAAAAAAEwM0UAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
+              "WhenOpened": "2025-03-11T02:31:53.054Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 154,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "StaffController.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\Controllers\\StaffController.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\Controllers\\StaffController.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\Controllers\\StaffController.cs",
+              "RelativeToolTip": "FSA_3S\\Controllers\\StaffController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABwAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-13T16:00:19.722Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "IStaffService.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\Services\\Interface\\IStaffService.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\Services\\Interface\\IStaffService.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\Services\\Interface\\IStaffService.cs",
+              "RelativeToolTip": "FSA_3S\\Services\\Interface\\IStaffService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-18T13:25:36.319Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "StaffService.cs",
+              "DocumentMoniker": "D:\\CS\\project_3s\\FSA_3S\\Services\\Service\\StaffService.cs",
+              "RelativeDocumentMoniker": "FSA_3S\\Services\\Service\\StaffService.cs",
+              "ToolTip": "D:\\CS\\project_3s\\FSA_3S\\Services\\Service\\StaffService.cs",
+              "RelativeToolTip": "FSA_3S\\Services\\Service\\StaffService.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAxwAwAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-13T15:51:22.474Z",
               "EditorCaption": ""
             }
           ]
