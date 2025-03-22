@@ -33,7 +33,6 @@ namespace FSA_3S.Models.Entities
         [Column("enddate")]
         public DateTime? EndDate { get; set; }
 
-        // Chỉ cần giữ CreatedBy và UpdatedBy là khóa ngoại
         [ForeignKey("Creator")]
         [Column("createdBy")]
         public int CreatedBy { get; set; }

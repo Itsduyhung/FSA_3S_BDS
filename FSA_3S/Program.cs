@@ -9,6 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 using FSA_3S.Repositories.Interface;
+using CloudinaryDotNet;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,10 +35,14 @@ builder.Services.AddScoped<EmailService>();
 builder.Services.AddScoped<ReportService>();
 builder.Services.AddScoped<IStaffService, StaffService>();
 builder.Services.AddScoped<IContractService, ContractService>();
+builder.Services.AddScoped<IRealEstateService, RealEstateService>();
+builder.Services.AddScoped <CloudinaryService>();
+
 
 // --- 2.2 Resign Repository
 builder.Services.AddScoped<IStaffRepository, StaffRepository>();
 builder.Services.AddScoped<IContractRepository, ContractRepository>();
+builder.Services.AddScoped<IRealEstateRepository, RealEstateRepository>();
 
 // --- 3. Cấu hình JWT Authentication ---
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -55,6 +60,16 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             IssuerSigningKey = new SymmetricSecurityKey(key)
         };
     });
+builder.Services.AddSingleton(provider =>
+{
+    var config = provider.GetRequiredService<IConfiguration>();
+    var account = new Account(
+        config["Cloudinary:CloudName"],
+        config["Cloudinary:ApiKey"],
+        config["Cloudinary:ApiSecret"]
+    );
+    return new Cloudinary(account);
+});
 
 // --- 4. Cấu hình Swagger và Controllers ---
 builder.Services.AddEndpointsApiExplorer();

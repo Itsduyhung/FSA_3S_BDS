@@ -46,8 +46,8 @@ namespace FSA_3S.Models.Entities
         // Chuyển từ DateOnly thành DateTime
         [Column("createdat")]
         public DateTime CreatedAt { get; set; }
-
-        public List<MappingRealEstateCustomerEntity>? MappingRealEstateCustomers { get; set; }
+        public List<CustomerEntity> Customer { get; set; } = new List<CustomerEntity>();
+        public List<RealEstateEntity> RealEstates { get; set; } = new List<RealEstateEntity>();
         public List<ContractEntity>? Contracts { get; set; }
         public List<AppointmentEntity>? Appointments { get; set; }
     }

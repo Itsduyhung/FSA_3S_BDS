@@ -6,14 +6,9 @@ using Microsoft.Extensions.Configuration;
 
 namespace FSA_3S.Models
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext(DbContextOptions<AppDbContext> options, IConfiguration configuration) : DbContext(options)
     {
-        private readonly IConfiguration _configuration;
-
-        public AppDbContext(DbContextOptions<AppDbContext> options, IConfiguration configuration) : base(options)
-        {
-            _configuration = configuration;
-        }
+        private readonly IConfiguration _configuration = configuration;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -39,10 +34,19 @@ namespace FSA_3S.Models
             modelBuilder.Entity<ContractEntity>()
     .Property(u => u.ContractType)
     .HasConversion(new EnumToStringConverter<ContractTypeEnum>());
+
+            modelBuilder.Entity<RealEstateEntity>()
+    .Property(u => u.RealEstateStatus)
+    .HasConversion(new EnumToStringConverter<RealEstateStatusEnum>());
+
+            modelBuilder.Entity<RealEstateEntity>()
+    .Property(u => u.RealEstateType)
+    .HasConversion(new EnumToStringConverter<RealEstateTypeEnum>());
         }
 
         public DbSet<UserEntity> Users { get; set; }
         public DbSet<ReportEntity> Reports { get; set; }
         public DbSet<ContractEntity> Contracts { get; set; }
+        public DbSet<RealEstateEntity> RealEstates { get; set; }
     }
 }

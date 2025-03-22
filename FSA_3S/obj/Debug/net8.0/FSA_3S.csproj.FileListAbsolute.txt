@@ -304,3 +304,5 @@ D:\CS\project_3s\FSA_3S\obj\Debug\net8.0\refint\FSA_3S.dll
 D:\CS\project_3s\FSA_3S\obj\Debug\net8.0\FSA_3S.pdb
 D:\CS\project_3s\FSA_3S\obj\Debug\net8.0\FSA_3S.genruntimeconfig.cache
 D:\CS\project_3s\FSA_3S\obj\Debug\net8.0\ref\FSA_3S.dll
+D:\CS\project_3s\FSA_3S\bin\Debug\net8.0\CloudinaryDotNet.dll
+D:\CS\project_3s\FSA_3S\bin\Debug\net8.0\Newtonsoft.Json.dll

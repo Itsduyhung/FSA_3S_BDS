@@ -5,13 +5,13 @@ using FSA_3S.Repositories.Interface;
 using System.Security.Claims;
 using FSA_3S.Models.Respone;
 using FSA_3S.Enum;
-using Microsoft.EntityFrameworkCore;
 using FSA_3S.Models;
 using FSA_3S.DTOs;
+using FSA_3S.Helpers;
 
 namespace FSA_3S.Services.Service
 {
-    public class ContractService(IContractRepository contractRepository, IHttpContextAccessor httpContextAccessor,AppDbContext context) : IContractService
+    public class ContractService(IContractRepository contractRepository, IHttpContextAccessor httpContextAccessor, AppDbContext context) : IContractService
     {
         private readonly AppDbContext _context = context;
         private readonly IContractRepository _contractRepository = contractRepository;
@@ -26,7 +26,6 @@ namespace FSA_3S.Services.Service
         {
             try
             {
-                // Kiểm tra dữ liệu trong khối try
                 _ = request ?? throw new ArgumentNullException(nameof(request), "Request cannot be null.");
 
                 _ = request.RealEstateId == null
@@ -51,7 +50,6 @@ namespace FSA_3S.Services.Service
             }
             catch (Exception ex)
             {
-                // ✅ Ném lại lỗi để tầng controller hoặc service xử lý
                 throw new Exception($"[ValidateContractRequest] Validation failed: {ex.Message}", ex);
             }
 
@@ -63,11 +61,8 @@ namespace FSA_3S.Services.Service
             int createdBy;
             try
             {
-                var userId = _httpContextAccessor.HttpContext?.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-                if (string.IsNullOrEmpty(userId) || !int.TryParse(userId, out createdBy))
-                {
-                    throw new UnauthorizedAccessException("Invalid or missing user ID.");
-                }
+                createdBy = UserIdHelper.GetUserId(_httpContextAccessor)
+                    ?? throw new UnauthorizedAccessException("Invalid or missing user ID.");
             }
             catch (Exception ex)
             {
@@ -92,7 +87,7 @@ namespace FSA_3S.Services.Service
             {
                 var result = await _contractRepository.CreateContractAsync(contract);
 
-                var response = new ContractResponse
+                return new ContractResponse
                 {
                     ContractId = result.ContractId,
                     RealEstateId = result.RealEstateId,
@@ -106,12 +101,9 @@ namespace FSA_3S.Services.Service
                     CreatedAt = result.CreatedAt,
                     UpdatedAt = result.UpdatedAt
                 };
-
-                return response;
             }
             catch (Exception ex)
             {
-                // Log lỗi chi tiết hơn từ InnerException
                 throw new Exception($"[CreateContractAsync] Failed to create contract: {ex.InnerException?.Message ?? ex.Message}", ex);
             }
         }

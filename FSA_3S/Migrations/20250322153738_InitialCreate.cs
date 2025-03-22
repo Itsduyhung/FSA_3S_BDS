@@ -25,11 +25,17 @@ namespace FSA_3S.Migrations
                     cccd = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: true),
                     customertype = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
                     notes = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    createdat = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    createdat = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CustomerEntityCustomerId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_customer", x => x.customerId);
+                    table.ForeignKey(
+                        name: "FK_customer_customer_CustomerEntityCustomerId",
+                        column: x => x.CustomerEntityCustomerId,
+                        principalTable: "customer",
+                        principalColumn: "customerId");
                 });
 
             migrationBuilder.CreateTable(
@@ -160,32 +166,38 @@ namespace FSA_3S.Migrations
                     realEstateId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    type = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
-                    status = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
-                    price = table.Column<float>(type: "real", nullable: false),
-                    bedrooms = table.Column<int>(type: "int", nullable: true),
-                    bathrooms = table.Column<int>(type: "int", nullable: true),
-                    image_path = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    type = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    status = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    sellerid = table.Column<int>(type: "int", nullable: false),
+                    coordinates = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    saledate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    image_path = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     address = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    createdby = table.Column<int>(type: "int", nullable: false),
-                    CreatorUserId = table.Column<int>(type: "int", nullable: true),
-                    updatedby = table.Column<int>(type: "int", nullable: true),
-                    UpdaterUserId = table.Column<int>(type: "int", nullable: true),
-                    createdat = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    createdBy = table.Column<int>(type: "int", nullable: false),
+                    updatedBy = table.Column<int>(type: "int", nullable: true),
+                    createdat = table.Column<DateTime>(type: "datetime2", nullable: false),
                     updatedat = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_realestate", x => x.realEstateId);
                     table.ForeignKey(
-                        name: "FK_realestate_user_CreatorUserId",
-                        column: x => x.CreatorUserId,
-                        principalTable: "user",
-                        principalColumn: "userId");
+                        name: "FK_realestate_customer_sellerid",
+                        column: x => x.sellerid,
+                        principalTable: "customer",
+                        principalColumn: "customerId",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_realestate_user_UpdaterUserId",
-                        column: x => x.UpdaterUserId,
+                        name: "FK_realestate_user_createdBy",
+                        column: x => x.createdBy,
+                        principalTable: "user",
+                        principalColumn: "userId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_realestate_user_updatedBy",
+                        column: x => x.updatedBy,
                         principalTable: "user",
                         principalColumn: "userId");
                 });
@@ -259,34 +271,6 @@ namespace FSA_3S.Migrations
                         principalColumn: "userId");
                 });
 
-            migrationBuilder.CreateTable(
-                name: "mappingrealestatecustomer",
-                columns: table => new
-                {
-                    mappingRealEstateCustomerId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CustomerId = table.Column<int>(type: "int", nullable: false),
-                    RealEstateId = table.Column<int>(type: "int", nullable: false),
-                    likes = table.Column<string>(type: "nvarchar(5)", maxLength: 5, nullable: true),
-                    comment = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_mappingrealestatecustomer", x => x.mappingRealEstateCustomerId);
-                    table.ForeignKey(
-                        name: "FK_mappingrealestatecustomer_customer_CustomerId",
-                        column: x => x.CustomerId,
-                        principalTable: "customer",
-                        principalColumn: "customerId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_mappingrealestatecustomer_realestate_RealEstateId",
-                        column: x => x.RealEstateId,
-                        principalTable: "realestate",
-                        principalColumn: "realEstateId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_appointment_CreatorUserId",
                 table: "appointment",
@@ -323,14 +307,9 @@ namespace FSA_3S.Migrations
                 column: "updatedBy");
 
             migrationBuilder.CreateIndex(
-                name: "IX_mappingrealestatecustomer_CustomerId",
-                table: "mappingrealestatecustomer",
-                column: "CustomerId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_mappingrealestatecustomer_RealEstateId",
-                table: "mappingrealestatecustomer",
-                column: "RealEstateId");
+                name: "IX_customer_CustomerEntityCustomerId",
+                table: "customer",
+                column: "CustomerEntityCustomerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_mappinguserappointment_AppointmentId",
@@ -353,14 +332,19 @@ namespace FSA_3S.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_realestate_CreatorUserId",
+                name: "IX_realestate_createdBy",
                 table: "realestate",
-                column: "CreatorUserId");
+                column: "createdBy");
 
             migrationBuilder.CreateIndex(
-                name: "IX_realestate_UpdaterUserId",
+                name: "IX_realestate_sellerid",
                 table: "realestate",
-                column: "UpdaterUserId");
+                column: "sellerid");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_realestate_updatedBy",
+                table: "realestate",
+                column: "updatedBy");
         }
 
         /// <inheritdoc />
@@ -368,9 +352,6 @@ namespace FSA_3S.Migrations
         {
             migrationBuilder.DropTable(
                 name: "contract");
-
-            migrationBuilder.DropTable(
-                name: "mappingrealestatecustomer");
 
             migrationBuilder.DropTable(
                 name: "mappinguserappointment");

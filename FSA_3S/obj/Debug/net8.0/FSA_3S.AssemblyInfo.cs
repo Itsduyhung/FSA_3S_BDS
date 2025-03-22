@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FSA_3S")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b5c51df962dac772150fa688fb69e7496bc0124d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+400b5bc9b9c055ec911c9ffc8f9756c6b0fc548e")]
 [assembly: System.Reflection.AssemblyProductAttribute("FSA_3S")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FSA_3S")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
