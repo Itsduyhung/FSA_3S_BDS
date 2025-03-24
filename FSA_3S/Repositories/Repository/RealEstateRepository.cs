@@ -2,6 +2,7 @@
 using FSA_3S.Repositories.Interface;
 using Microsoft.EntityFrameworkCore;
 using FSA_3S.Models;
+using FSA_3S.DTOs;
 
 namespace FSA_3S.Repositories.Repository
 {
@@ -74,6 +75,20 @@ namespace FSA_3S.Repositories.Repository
             _context.RealEstates.Remove(realEstate);
             await _context.SaveChangesAsync();
             return true;
+        }
+        /// <summary>
+        /// Check owner for Contract
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<RealEstateBasicInfoDto>> GetRealEstateBasicInfoAsync()
+        {
+            return await _context.RealEstates
+                .Select(r => new RealEstateBasicInfoDto
+                {
+                    RealEstateId = r.RealEstateId,
+                    Seller = r.Seller
+                })
+                .ToListAsync();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using FSA_3S.Models.Entities;
+﻿using FSA_3S.DTOs;
+using FSA_3S.Models.Entities;
 
 namespace FSA_3S.Repositories.Interface
 {
@@ -20,5 +21,7 @@ namespace FSA_3S.Repositories.Interface
         /// <param name="id"></param>
         /// <returns></returns>
         Task<bool> DeleteAsync(int id);
+        Task<List<RealEstateBasicInfoDto>> GetRealEstateBasicInfoAsync();
+
     }
 }

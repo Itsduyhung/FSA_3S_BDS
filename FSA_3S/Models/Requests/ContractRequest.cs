@@ -10,14 +10,6 @@ namespace FSA_3S.Models.Requests
         [Required(ErrorMessage = "RealEstateId is required.")]
         public required int RealEstateId { get; set; }
 
-        //[Required(ErrorMessage = "CustomerId is required.")]
-        //[Range(1, int.MaxValue, ErrorMessage = "CustomerId must be greater than zero.")]
-        //public required int CustomerId { get; set; }
-
-        //[Required(ErrorMessage = "SellerId is required.")]
-        //[Range(1, int.MaxValue, ErrorMessage = "SellerId must be greater than zero.")]
-        //public required int SellerId { get; set; }
-
         [Required(ErrorMessage = "ContractType is required.")]
         public ContractTypeEnum ContractType { get; set; }
 

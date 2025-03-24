@@ -36,8 +36,9 @@ namespace FSA_3S.Services.Service
             int buyerId = await GetOrCreateCustomerAsync(request.Buyer);
             int sellerId = await GetOrCreateCustomerAsync(request.Seller);
 
-            // Lấy thông tin bất động sản từ RealEstateId
-            var realEstate = await _realEstateRepository.GetByIdAsync(request.RealEstateId) ?? throw new KeyNotFoundException("Real estate property not found.");
+            var realEstates = await _realEstateRepository.GetRealEstateBasicInfoAsync();
+            var realEstate = realEstates.FirstOrDefault(r => r.RealEstateId == request.RealEstateId)
+                ?? throw new KeyNotFoundException("Real estate property not found.");
 
             if (realEstate.Seller != sellerId)
             {
@@ -50,14 +51,13 @@ namespace FSA_3S.Services.Service
                 ContractType = request.ContractType,
                 ContractStatus = request.ContractStatus,
                 StatusPayment = request.StatusPayment,
-                StartDate = request.StartDate,
+                StartDate = request.StartDate, 
                 EndDate = request.EndDate,
                 CreatedBy = createdBy,
                 UpdatedBy = null,
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = null,
             };
-
             var createdContract = await _contractRepository.AddContractAsync(contract);
 
             var mappings = new List<MappingContractCustomerEntity>
@@ -152,6 +152,18 @@ namespace FSA_3S.Services.Service
             if (contract == null)
                 return null;
 
+            // Cập nhật thông tin Buyer và Seller
+            int buyerId = await GetOrCreateCustomerAsync(request.Buyer);
+            int sellerId = await GetOrCreateCustomerAsync(request.Seller);
+            var realEstates = await _realEstateRepository.GetRealEstateBasicInfoAsync();
+            var realEstate = realEstates.FirstOrDefault(r => r.RealEstateId == request.RealEstateId)
+                ?? throw new KeyNotFoundException("Real estate property not found.");
+
+            if (realEstate.Seller != sellerId)
+            {
+                throw new UnauthorizedAccessException("Seller ID does not match the owner of the real estate.");
+            }
+
             // Cập nhật thông tin hợp đồng
             contract.RealEstateId = request.RealEstateId;
             contract.ContractType = request.ContractType;
@@ -163,11 +175,17 @@ namespace FSA_3S.Services.Service
                 ?? throw new UnauthorizedAccessException("Invalid or missing user ID.");
             contract.UpdatedAt = DateTime.UtcNow;
 
-            await _contractRepository.UpdateContractAsync(contract);
 
-            // Cập nhật thông tin Buyer và Seller
-            int buyerId = await GetOrCreateCustomerAsync(request.Buyer);
-            int sellerId = await GetOrCreateCustomerAsync(request.Seller);
+            //if (contract.RealEstateId == null)
+            //{
+            //    throw new KeyNotFoundException("Real estate property not found.");
+            //}
+
+            //if (contract.RealEstateId != C) // Chắc chắn SellerId là kiểu int?
+            //{
+            //    throw new UnauthorizedAccessException("Seller ID does not match the owner of the real estate.");
+            //}
+            await _contractRepository.UpdateContractAsync(contract);
 
             // Xóa dữ liệu cũ trước khi thêm mới
             await _contractRepository.DeleteMappingsByContractIdAsync(contractId);
