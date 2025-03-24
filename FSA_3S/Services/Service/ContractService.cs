@@ -1,156 +1,222 @@
-﻿using FSA_3S.Services.Interface;
+﻿using FSA_3S.Enum;
+using FSA_3S.Helpers;
 using FSA_3S.Models.Entities;
 using FSA_3S.Models.Requests;
-using FSA_3S.Repositories.Interface;
-using System.Security.Claims;
 using FSA_3S.Models.Respone;
-using FSA_3S.Enum;
-using FSA_3S.Models;
-using FSA_3S.DTOs;
-using FSA_3S.Helpers;
+using FSA_3S.Repositories.Interface;
+using FSA_3S.Repositories.Repository;
+using FSA_3S.Services.Interface;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 
 namespace FSA_3S.Services.Service
 {
-    public class ContractService(IContractRepository contractRepository, IHttpContextAccessor httpContextAccessor, AppDbContext context) : IContractService
+    public class ContractService(
+        IContractRepository contractRepository,
+        ICustomerRepository customerRepository,
+        IRealEstateRepository realEstateRepository,
+        IHttpContextAccessor httpContextAccessor) : IContractService
     {
-        private readonly AppDbContext _context = context;
         private readonly IContractRepository _contractRepository = contractRepository;
+        private readonly ICustomerRepository _customerRepository = customerRepository;
         private readonly IHttpContextAccessor _httpContextAccessor = httpContextAccessor;
+        private readonly IRealEstateRepository _realEstateRepository = realEstateRepository;
 
         /// <summary>
-        /// API Post Contract
+        /// APi Post Contract
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public async Task ValidateContractRequest(ContractRequest request)
+        /// <exception cref="UnauthorizedAccessException"></exception>
+        public async Task<ContractResponse?> CreateContractAsync(ContractRequest request)
         {
-            try
+            int createdBy = UserIdHelper.GetUserId(_httpContextAccessor)
+                ?? throw new UnauthorizedAccessException("Invalid or missing user ID.");
+
+            int buyerId = await GetOrCreateCustomerAsync(request.Buyer);
+            int sellerId = await GetOrCreateCustomerAsync(request.Seller);
+
+            // Lấy thông tin bất động sản từ RealEstateId
+            var realEstate = await _realEstateRepository.GetByIdAsync(request.RealEstateId) ?? throw new KeyNotFoundException("Real estate property not found.");
+
+            if (realEstate.Seller != sellerId)
             {
-                _ = request ?? throw new ArgumentNullException(nameof(request), "Request cannot be null.");
-
-                _ = request.RealEstateId == null
-                    ? request.RealEstateId
-                    : throw new ArgumentException("RealEstateId is required.");
-
-                _ = request.CustomerId == 0
-                    ? request.CustomerId
-                    : throw new ArgumentException("CustomerId is required.");
-
-                _ = request.StartDate != null
-                    ? request.StartDate
-                    : throw new ArgumentException("StartDate cannot be null.");
-
-                _ = request.EndDate != null
-                    ? request.EndDate
-                    : throw new ArgumentException("EndDate cannot be null.");
-
-                _ = request.StartDate < request.EndDate
-                    ? request.StartDate
-                    : throw new ArgumentException("StartDate must be earlier than EndDate.");
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"[ValidateContractRequest] Validation failed: {ex.Message}", ex);
-            }
-
-            await Task.CompletedTask;
-        }
-
-        public async Task<ContractResponse> CreateContractAsync(ContractRequest request)
-        {
-            int createdBy;
-            try
-            {
-                createdBy = UserIdHelper.GetUserId(_httpContextAccessor)
-                    ?? throw new UnauthorizedAccessException("Invalid or missing user ID.");
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"[CreateContractAsync] Failed to get user ID: {ex.Message}", ex);
+                throw new UnauthorizedAccessException("Seller ID does not match the owner of the real estate.");
             }
 
             var contract = new ContractEntity
             {
                 RealEstateId = request.RealEstateId,
-                CustomerId = request.CustomerId,
                 ContractType = request.ContractType,
                 ContractStatus = request.ContractStatus,
+                StatusPayment = request.StatusPayment,
                 StartDate = request.StartDate,
                 EndDate = request.EndDate,
                 CreatedBy = createdBy,
                 UpdatedBy = null,
                 CreatedAt = DateTime.UtcNow,
-                UpdatedAt = null
+                UpdatedAt = null,
             };
 
-            try
-            {
-                var result = await _contractRepository.CreateContractAsync(contract);
+            var createdContract = await _contractRepository.AddContractAsync(contract);
 
-                return new ContractResponse
-                {
-                    ContractId = result.ContractId,
-                    RealEstateId = result.RealEstateId,
-                    CustomerId = result.CustomerId,
-                    ContractType = result.ContractType,
-                    ContractStatus = result.ContractStatus,
-                    StartDate = result.StartDate,
-                    EndDate = result.EndDate,
-                    CreatedBy = result.CreatedBy,
-                    UpdatedBy = result.UpdatedBy,
-                    CreatedAt = result.CreatedAt,
-                    UpdatedAt = result.UpdatedAt
-                };
-            }
-            catch (Exception ex)
+            var mappings = new List<MappingContractCustomerEntity>
+    {
+        new()
+        {
+            ContractId = createdContract.ContractId,
+            BuyerId = buyerId,
+            SellerId = sellerId,
+        },
+    };
+
+            await _contractRepository.AddMappingsAsync(mappings);
+
+            var clauseMappings = request.ClauseIds.Select(clauseId => new MappingContractClauseEntity
             {
-                throw new Exception($"[CreateContractAsync] Failed to create contract: {ex.InnerException?.Message ?? ex.Message}", ex);
-            }
+                ContractId = createdContract.ContractId,
+                ClauseId = clauseId
+            }).ToList();
+
+            await _contractRepository.AddClauseMappingsAsync(clauseMappings);
+
+            return new ContractResponse
+            {
+                ContractId = createdContract.ContractId,
+                RealEstateId = createdContract.RealEstateId,
+                BuyerId = buyerId,
+                SellerId = sellerId,
+                ContractType = createdContract.ContractType,
+                ContractStatus = createdContract.ContractStatus,
+                StatusPayment = createdContract.StatusPayment,
+                StartDate = createdContract.StartDate,
+                EndDate = createdContract.EndDate,
+                ClauseIds = request.ClauseIds,
+                CreatedBy = createdContract.CreatedBy,
+                CreatedAt = createdContract.CreatedAt
+            };
         }
+        private async Task<int> GetOrCreateCustomerAsync(PersonInfo personInfo)
+        {
+            var existingCustomer = await _customerRepository.GetByIdentityNumberAsync(personInfo.CCCD);
+            if (existingCustomer != null)
+                return existingCustomer.CustomerId;
 
+            var newCustomer = new CustomerEntity
+            {
+                FullName = personInfo.FullName,
+                CCCD = personInfo.CCCD,
+                PhoneNumber = personInfo.PhoneNumber,
+                Address = personInfo.Address,
+                CreatedAt = DateTime.UtcNow
+            };
+
+            return await _customerRepository.AddCustomerAsync(newCustomer);
+        }
         /// <summary>
-        /// Change Status when Contract expried
+        /// API Get All Contract
         /// </summary>
         /// <returns></returns>
-        public async Task UpdateContractStatusAsync()
+        public async Task<List<ContractResponse>> GetAllContractsAsync()
         {
-            var expiredContracts = await _contractRepository.GetExpiredContractsAsync();
-
-            if (expiredContracts.Count != 0)
-            {
-                foreach (var contract in expiredContracts)
-                {
-                    contract.ContractStatus = ContractStatusEnum.Inactive;
-                }
-
-                await _contractRepository.UpdateContractsAsync(expiredContracts);
-            }
-        }
-
-        /// <summary>
-        /// API Get Contract (All)
-        /// </summary>
-        /// <returns></returns>
-        public async Task<IEnumerable<ContractDTO>> GetAllContractsAsync()
-        {
-            var contracts = await _contractRepository.GetAllContractAsync();
-
-            var contractDTOs = contracts.Select(c => new ContractDTO
+            var contracts = await _contractRepository.GetAllContractsAsync();
+            return contracts.Select(c => new ContractResponse
             {
                 ContractId = c.ContractId,
                 RealEstateId = c.RealEstateId,
-                CustomerId = c.CustomerId,
+                BuyerId = c.MappingContractCustomer.FirstOrDefault(mc => mc.Buyer != null)?.Buyer.CustomerId ?? 0,
+                SellerId = c.MappingContractCustomer.FirstOrDefault(mc => mc.Seller != null)?.Seller.CustomerId ?? 0,
                 ContractType = c.ContractType,
                 ContractStatus = c.ContractStatus,
+                StatusPayment = c.StatusPayment,
                 StartDate = c.StartDate,
                 EndDate = c.EndDate,
+                ClauseIds = c.ContractClauses.Select(cl => cl.ClauseId).ToList(),
                 CreatedBy = c.CreatedBy,
                 UpdatedBy = c.UpdatedBy,
                 CreatedAt = c.CreatedAt,
                 UpdatedAt = c.UpdatedAt
             }).ToList();
+        }
 
-            return contractDTOs;
+        /// <summary>
+        /// API Put Contract
+        /// </summary>
+        /// <param name="contractId"></param>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        /// <exception cref="UnauthorizedAccessException"></exception>
+        public async Task<ContractResponse?> UpdateContractAsync(int contractId, ContractRequest request)
+        {
+            var contract = await _contractRepository.GetContractByIdAsync(contractId);
+            if (contract == null)
+                return null;
+
+            // Cập nhật thông tin hợp đồng
+            contract.RealEstateId = request.RealEstateId;
+            contract.ContractType = request.ContractType;
+            contract.ContractStatus = request.ContractStatus;
+            contract.StatusPayment = request.StatusPayment;
+            contract.StartDate = request.StartDate;
+            contract.EndDate = request.EndDate;
+            contract.UpdatedBy = UserIdHelper.GetUserId(_httpContextAccessor)
+                ?? throw new UnauthorizedAccessException("Invalid or missing user ID.");
+            contract.UpdatedAt = DateTime.UtcNow;
+
+            await _contractRepository.UpdateContractAsync(contract);
+
+            // Cập nhật thông tin Buyer và Seller
+            int buyerId = await GetOrCreateCustomerAsync(request.Buyer);
+            int sellerId = await GetOrCreateCustomerAsync(request.Seller);
+
+            // Xóa dữ liệu cũ trước khi thêm mới
+            await _contractRepository.DeleteMappingsByContractIdAsync(contractId);
+            await _contractRepository.DeleteClauseMappingsByContractIdAsync(contractId);
+
+            var mappings = new List<MappingContractCustomerEntity>
+    {
+        new()
+        {
+            ContractId = contract.ContractId,
+            BuyerId = buyerId,
+            SellerId = sellerId,
+            //CustomerType = CustomerTypeEnum.Buyer
+        },
+        //new()
+        //{
+        //    ContractId = contract.ContractId,
+        //    SellerId = sellerId,
+        //    CustomerType = CustomerTypeEnum.Seller
+        //}
+    };
+
+            await _contractRepository.AddMappingsAsync(mappings);
+
+            var clauseMappings = request.ClauseIds.Select(clauseId => new MappingContractClauseEntity
+            {
+                ContractId = contract.ContractId,
+                ClauseId = clauseId
+            }).ToList();
+
+            await _contractRepository.AddClauseMappingsAsync(clauseMappings);
+
+            return new ContractResponse
+            {
+                ContractId = contract.ContractId,
+                RealEstateId = contract.RealEstateId,
+                BuyerId = buyerId,
+                SellerId = sellerId,
+                ContractType = contract.ContractType,
+                ContractStatus = contract.ContractStatus,
+                StatusPayment = contract.StatusPayment,
+                StartDate = contract.StartDate,
+                EndDate = contract.EndDate,
+                ClauseIds = request.ClauseIds,
+                CreatedBy = contract.CreatedBy,
+                CreatedAt = contract.CreatedAt,
+                UpdatedBy = contract.UpdatedBy,
+                UpdatedAt = contract.UpdatedAt
+            };
         }
         /// <summary>
         /// API Delete Contract
@@ -163,7 +229,13 @@ namespace FSA_3S.Services.Service
             if (contract == null)
                 return false;
 
+            // Xóa các bảng mapping trước khi xóa contract
+            await _contractRepository.DeleteMappingsByContractIdAsync(contractId);
+            await _contractRepository.DeleteClauseMappingsByContractIdAsync(contractId);
+
+            // Xóa hợp đồng
             await _contractRepository.DeleteContractAsync(contract);
+
             return true;
         }
     }

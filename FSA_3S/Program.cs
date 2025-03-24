@@ -1,5 +1,4 @@
 ﻿using FSA_3S.Models;
-using FSA_3S.Repositories;
 using FSA_3S.Repositories.Repository;
 using FSA_3S.Services.Service;
 using FSA_3S.Services.Interface;
@@ -37,6 +36,7 @@ builder.Services.AddScoped<IStaffService, StaffService>();
 builder.Services.AddScoped<IContractService, ContractService>();
 builder.Services.AddScoped<IRealEstateService, RealEstateService>();
 builder.Services.AddScoped <CloudinaryService>();
+builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 
 
 // --- 2.2 Resign Repository

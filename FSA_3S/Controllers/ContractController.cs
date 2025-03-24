@@ -1,76 +1,73 @@
 ﻿using FSA_3S.Models.Requests;
+using FSA_3S.Models.Respone;
 using FSA_3S.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace FSA_3S.Controllers
 {
+    [Route("api/contracts")]
     [ApiController]
-    [Route("api/[controller]")]
     public class ContractController(IContractService contractService) : ControllerBase
     {
         private readonly IContractService _contractService = contractService;
-
-        [HttpPost("Created_Contract")]
+        /// <summary>
+        /// API Post for Contract
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [HttpPost]
         public async Task<IActionResult> CreateContract([FromBody] ContractRequest request)
         {
             if (!ModelState.IsValid)
-            {
-                var errors = ModelState
-                    .SelectMany(x => x.Value.Errors)
-                    .Select(x => x.ErrorMessage)
-                    .ToList();
+                return BadRequest(ModelState);
 
-                return BadRequest(new
-                {
-                    Message = "Invalid request data",
-                    Errors = errors
-                });
-            }
+            var result = await _contractService.CreateContractAsync(request);
+            if (result == null)
+                return BadRequest("Failed to create contract.");
 
-            try
-            {
-                var result = await _contractService.CreateContractAsync(request);
-                return Ok(new
-                {
-                    Message = "Contract created successfully",
-                    Data = result
-                });
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new
-                {
-                    Message = "Failed to create contract",
-                    Error = ex.Message
-                });
-            }
+            return CreatedAtAction(nameof(CreateContract), new { id = result.ContractId }, result);
         }
-
-        [HttpPost("Change_Contract_Status_expried")]
-        public async Task<IActionResult> UpdateContractStatus()
+        /// <summary>
+        /// API Get All Contract
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("get-all-contracts")]
+        public async Task<IActionResult> GetAllContracts()
         {
-            await _contractService.UpdateContractStatusAsync();
-            return Ok("Contract status updated successfully.");
+            var contracts = await _contractService.GetAllContractsAsync();
+            return Ok(contracts);
         }
-
-        [HttpGet("Get_Contract")]
-        public async Task<IActionResult> GetAllContract()
+        /// <summary>
+        /// API Put for Contract
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateContract(int id, [FromBody] ContractRequest request)
         {
-            var result = await _contractService.GetAllContractsAsync();
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var result = await _contractService.UpdateContractAsync(id, request);
+            if (result == null)
+                return NotFound("Contract not found or update failed.");
+
             return Ok(result);
         }
-
+        /// <summary>
+        /// API Delete Contract
+        /// </summary>
+        /// <param name="contractId"></param>
+        /// <returns></returns>
         [HttpDelete("{contractId}")]
         public async Task<IActionResult> DeleteContract(int contractId)
         {
             var isDeleted = await _contractService.DeleteContractAsync(contractId);
             if (!isDeleted)
-            {
-                return NotFound(new { message = "Contract not found" });
-            }
+                return NotFound(new { Message = "Contract not found." });
 
-            return Ok(new { message = "Contract deleted successfully" });
+            return Ok(new { Message = "Contract deleted successfully." });
         }
     }
 }

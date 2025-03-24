@@ -16,26 +16,14 @@ namespace _3SLand.Data.Configuration
                    .IsRequired()
                    .HasMaxLength(50);
 
-            builder.Property(c => c.Email)
-                   .IsRequired()
-                   .HasMaxLength(50);
-
             builder.Property(c => c.PhoneNumber)
                    .HasMaxLength(13);
 
             builder.Property(c => c.Address)
                    .HasMaxLength(250);
 
-            builder.Property(c => c.Gender)
-                   .HasMaxLength(10);
-
-            builder.Property(c => c.CCCD)
-                   .HasMaxLength(13);
-
             builder.Property(c => c.CustomerType)
                    .HasMaxLength(10);
-
-            builder.Property(c => c.Notes);
 
             builder.Property(c => c.CreatedAt)
                    .HasDefaultValueSql("CURRENT_DATE");

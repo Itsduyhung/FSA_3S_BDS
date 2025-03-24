@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using FSA_3S.Enum;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FSA_3S.Models.Entities
@@ -15,11 +16,6 @@ namespace FSA_3S.Models.Entities
         [StringLength(50)]
         public required string FullName { get; set; }
 
-        [Required]
-        [Column("email")]
-        [StringLength(50)]
-        public required string Email { get; set; }
-
         [Column("phonenumber")]
         [StringLength(13)]
         public string? PhoneNumber { get; set; }
@@ -27,28 +23,29 @@ namespace FSA_3S.Models.Entities
         [Column("address")]
         [StringLength(250)]
         public string? Address { get; set; }
-
-        [Column("gender")]
-        [StringLength(10)]
-        public string? Gender { get; set; }
-
-        [Column("cccd")]
-        [StringLength(13)]
+        [Column("CCCD")]
+        [StringLength(20)]
         public string? CCCD { get; set; }
 
         [Column("customertype")]
         [StringLength(10)]
-        public string? CustomerType { get; set; }
+        public CustomerTypeEnum CustomerType { get; set; }
 
-        [Column("notes")]
-        public string? Notes { get; set; }
-
-        // Chuyển từ DateOnly thành DateTime
         [Column("createdat")]
         public DateTime CreatedAt { get; set; }
-        public List<CustomerEntity> Customer { get; set; } = new List<CustomerEntity>();
-        public List<RealEstateEntity> RealEstates { get; set; } = new List<RealEstateEntity>();
-        public List<ContractEntity>? Contracts { get; set; }
+
+        // Mối quan hệ 1-n với RealEstateEntity
+        public List<RealEstateEntity> RealEstates { get; set; } = [];
+
+        // Mối quan hệ n-n với ContractEntity thông qua MappingContractCustomerEntity
+        [InverseProperty("Buyer")]
+        public List<MappingContractCustomerEntity> BuyerMappings { get; set; } = [];
+
+        [InverseProperty("Seller")]
+        public List<MappingContractCustomerEntity> SellerMappings { get; set; } = [];
+
+        // Mối quan hệ 1-n với AppointmentEntity
         public List<AppointmentEntity>? Appointments { get; set; }
+
     }
 }

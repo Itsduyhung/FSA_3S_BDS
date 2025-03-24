@@ -1,6 +1,5 @@
-﻿using FSA_3S.Data;
+﻿using FSA_3S.Models.Entities;
 using FSA_3S.Repositories.Interface;
-using FSA_3S.Models.Entities;
 using FSA_3S.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,50 +8,73 @@ namespace FSA_3S.Repositories.Repository
     public class ContractRepository(AppDbContext context) : IContractRepository
     {
         private readonly AppDbContext _context = context;
-        /// <summary>
-        /// API Post Contract
-        /// </summary>
-        /// <param name="contract"></param>
-        /// <returns></returns>
-        public async Task<ContractEntity> CreateContractAsync(ContractEntity contract)
+
+        public async Task<ContractEntity?> GetContractByIdAsync(int contractId)
+        {
+            return await _context.Contracts.FindAsync(contractId);
+        }
+
+        public async Task<ContractEntity> AddContractAsync(ContractEntity contract)
         {
             _context.Contracts.Add(contract);
             await _context.SaveChangesAsync();
             return contract;
         }
         /// <summary>
-        /// API Change Status Contract expried
+        /// Method for API Post COntract
         /// </summary>
+        /// <param name="contract"></param>
         /// <returns></returns>
-        public async Task<List<ContractEntity>> GetExpiredContractsAsync()
+        public async Task UpdateContractAsync(ContractEntity contract)
         {
-            return await _context.Contracts
-                .Where(c => c.EndDate <= DateTime.UtcNow && c.ContractStatus != Enum.ContractStatusEnum.Inactive)
-                .ToListAsync();
+            _context.Contracts.Update(contract);
+            await _context.SaveChangesAsync();
         }
-        public async Task UpdateContractsAsync(List<ContractEntity> contracts)
+
+        public async Task AddMappingsAsync(List<MappingContractCustomerEntity> mappings)
         {
-            _context.Contracts.UpdateRange(contracts);
+            _context.MappingContractCustomers.AddRange(mappings);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task AddClauseMappingsAsync(List<MappingContractClauseEntity> clauseMappings)
+        {
+            _context.MappingContractClauseEntities.AddRange(clauseMappings);
             await _context.SaveChangesAsync();
         }
         /// <summary>
-        /// API Get Contract (All)
+        /// API Get All Contract
         /// </summary>
         /// <returns></returns>
-        public async Task<IEnumerable<ContractEntity>> GetAllContractAsync()
+        public async Task<List<ContractEntity>> GetAllContractsAsync()
         {
-            return await _context.Contracts.ToListAsync();
+            return await _context.Contracts
+                .Include(c => c.MappingContractCustomer)
+                    .ThenInclude(mc => mc.Buyer)
+                .Include(c => c.MappingContractCustomer)
+                    .ThenInclude(mc => mc.Seller)
+                .Include(c => c.ContractClauses)
+                .ToListAsync();
         }
+
         /// <summary>
-        /// API Delete Contract
+        /// Method Delete support for API Put + Delete Contract
         /// </summary>
         /// <param name="contractId"></param>
         /// <returns></returns>
-        public async Task<ContractEntity?> GetContractByIdAsync(int contractId)
+        public async Task DeleteMappingsByContractIdAsync(int contractId)
         {
-            return await _context.Contracts.FindAsync(contractId);
+            var existingMappings = _context.MappingContractCustomers.Where(m => m.ContractId == contractId);
+            _context.MappingContractCustomers.RemoveRange(existingMappings);
+            await _context.SaveChangesAsync();
         }
 
+        public async Task DeleteClauseMappingsByContractIdAsync(int contractId)
+        {
+            var existingClauseMappings = _context.MappingContractClauseEntities.Where(m => m.ContractId == contractId);
+            _context.MappingContractClauseEntities.RemoveRange(existingClauseMappings);
+            await _context.SaveChangesAsync();
+        }
         public async Task DeleteContractAsync(ContractEntity contract)
         {
             _context.Contracts.Remove(contract);

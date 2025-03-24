@@ -16,16 +16,15 @@ namespace FSA_3S.Models.Entities
         public int? RealEstateId { get; set; }
         public RealEstateEntity? RealEstate { get; set; }
 
-        [ForeignKey("Customer")]
-        [Column("customerId")]
-        public int? CustomerId { get; set; }
-        public CustomerEntity? Customer { get; set; }
-
         [Column("contracttype")]
         public ContractTypeEnum ContractType { get; set; }
 
         [Column("contractstatus")]
         public ContractStatusEnum ContractStatus { get; set; }
+
+        [Required]
+        [Column("statuspayment")]
+        public StatusPaymentEnum StatusPayment { get; set; }
 
         [Column("startdate")]
         public DateTime? StartDate { get; set; }
@@ -48,5 +47,8 @@ namespace FSA_3S.Models.Entities
 
         [Column("updatedAt")]
         public DateTime? UpdatedAt { get; set; }
+
+        public List<MappingContractCustomerEntity> MappingContractCustomer { get; set; } = [];
+        public List<MappingContractClauseEntity> ContractClauses { get; set; } = [];
     }
 }

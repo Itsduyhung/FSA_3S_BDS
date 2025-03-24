@@ -23,30 +23,62 @@ namespace FSA_3S.Models
         {
             base.OnModelCreating(modelBuilder);
 
+            // Convert enum to string
             modelBuilder.Entity<UserEntity>()
                 .Property(u => u.Status)
                 .HasConversion(new EnumToStringConverter<UserStatusEnum>());
 
             modelBuilder.Entity<ContractEntity>()
-                .Property(u => u.ContractStatus)
+                .Property(c => c.ContractStatus)
                 .HasConversion(new EnumToStringConverter<ContractStatusEnum>());
 
             modelBuilder.Entity<ContractEntity>()
-    .Property(u => u.ContractType)
-    .HasConversion(new EnumToStringConverter<ContractTypeEnum>());
+    .Property(c => c.StatusPayment)
+    .HasConversion(new EnumToStringConverter<StatusPaymentEnum>());
+
+            modelBuilder.Entity<ContractEntity>()
+                .Property(c => c.ContractType)
+                .HasConversion(new EnumToStringConverter<ContractTypeEnum>());
 
             modelBuilder.Entity<RealEstateEntity>()
-    .Property(u => u.RealEstateStatus)
-    .HasConversion(new EnumToStringConverter<RealEstateStatusEnum>());
+                .Property(r => r.RealEstateStatus)
+                .HasConversion(new EnumToStringConverter<RealEstateStatusEnum>());
 
             modelBuilder.Entity<RealEstateEntity>()
-    .Property(u => u.RealEstateType)
-    .HasConversion(new EnumToStringConverter<RealEstateTypeEnum>());
+                .Property(r => r.RealEstateType)
+                .HasConversion(new EnumToStringConverter<RealEstateTypeEnum>());
+
+            // 👉 Convert ClauseTypeEnum to string
+            modelBuilder.Entity<ClauseEntity>()
+                .Property(c => c.ClauseType)
+                .HasConversion(new EnumToStringConverter<ClauseTypeEnum>());
+
+            // 👉 Setup many-to-many relationship using MappingContractClauseEntity
+            modelBuilder.Entity<MappingContractClauseEntity>()
+                .HasKey(mc => new { mc.ContractId, mc.ClauseId });
+
+            modelBuilder.Entity<MappingContractClauseEntity>()
+                .HasOne(mc => mc.Contract)
+                .WithMany(c => c.ContractClauses)
+                .HasForeignKey(mc => mc.ContractId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<MappingContractClauseEntity>()
+                .HasOne(mc => mc.Clause)
+                .WithMany(c => c.ContractClauses)
+                .HasForeignKey(mc => mc.ClauseId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
 
         public DbSet<UserEntity> Users { get; set; }
         public DbSet<ReportEntity> Reports { get; set; }
         public DbSet<ContractEntity> Contracts { get; set; }
         public DbSet<RealEstateEntity> RealEstates { get; set; }
+        public DbSet<ClauseEntity> Clauses { get; set; }
+        public DbSet<MappingContractClauseEntity> ContractClauses { get; set; }
+        public DbSet<CustomerEntity> Customers { get; set; }
+        public DbSet<MappingContractCustomerEntity> MappingContractCustomers { get; set; }
+        public DbSet<MappingContractClauseEntity> MappingContractClauseEntities { get; set; }
+
     }
 }

@@ -72,6 +72,6 @@ namespace FSA_3S.Models.Entities
         [Column("updatedat")]
         public DateTime? UpdatedAt { get; set; }
 
-        public List<ContractEntity> Contracts { get; set; } = new List<ContractEntity>();
+        public List<ContractEntity> Contracts { get; set; } = [];
     }
 }
