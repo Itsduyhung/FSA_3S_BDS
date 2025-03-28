@@ -16,6 +16,16 @@ namespace FSA_3S.Models.Entities
         [StringLength(50)]
         public required string FullName { get; set; }
 
+        //[Required]
+        [Column("email")]
+        [StringLength(50)]
+        public string? Email { get; set; }
+
+        //[Required]
+        [Column("gender")]
+        [StringLength(50)]
+        public string? Gender { get; set; }
+
         [Column("phonenumber")]
         [StringLength(13)]
         public string? PhoneNumber { get; set; }

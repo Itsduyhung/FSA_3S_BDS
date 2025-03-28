@@ -2,8 +2,8 @@
 {
     public enum RealEstateStatusEnum
     {
-        Available,
-        Pending,
-        Closed
+        Waiting_for_approval,
+        Approve,
+        Reject
     }
 }

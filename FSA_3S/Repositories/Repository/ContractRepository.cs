@@ -27,7 +27,7 @@ namespace FSA_3S.Repositories.Repository
         /// <returns></returns>
         public async Task UpdateContractAsync(ContractEntity contract)
         {
-            _context.Contracts.Update(contract);
+            _context.Entry(contract).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }
 

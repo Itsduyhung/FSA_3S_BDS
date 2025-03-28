@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace FSA_3S.Models.Entities
 {
     [Table("contract")]
-    public class ContractEntity
+    public class ContractEntity : IAuditableEntity
     {
         [Key]
         [Column("contractId")]

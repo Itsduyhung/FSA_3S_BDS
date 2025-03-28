@@ -89,6 +89,46 @@ namespace FSA_3S.Migrations
                     b.ToTable("appointment");
                 });
 
+            modelBuilder.Entity("FSA_3S.Models.Entities.AuditEntity", b =>
+                {
+                    b.Property<int>("AuditId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AuditId"));
+
+                    b.Property<int?>("ContractId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<string>("EntityType")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int?>("RealEstateId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
+
+                    b.HasKey("AuditId");
+
+                    b.HasIndex("ContractId");
+
+                    b.HasIndex("RealEstateId");
+
+                    b.ToTable("Audit", (string)null);
+                });
+
             modelBuilder.Entity("FSA_3S.Models.Entities.ClauseEntity", b =>
                 {
                     b.Property<int>("ClauseId")
@@ -207,11 +247,21 @@ namespace FSA_3S.Migrations
                         .HasColumnType("int")
                         .HasColumnName("customertype");
 
+                    b.Property<string>("Email")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("email");
+
                     b.Property<string>("FullName")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)")
                         .HasColumnName("fullname");
+
+                    b.Property<string>("Gender")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("gender");
 
                     b.Property<string>("PhoneNumber")
                         .HasMaxLength(13)
@@ -226,14 +276,10 @@ namespace FSA_3S.Migrations
             modelBuilder.Entity("FSA_3S.Models.Entities.MappingContractClauseEntity", b =>
                 {
                     b.Property<int>("ContractId")
-                        .HasColumnType("int")
-                        .HasColumnName("contractId")
-                        .HasColumnOrder(0);
+                        .HasColumnType("int");
 
                     b.Property<int>("ClauseId")
-                        .HasColumnType("int")
-                        .HasColumnName("clauseId")
-                        .HasColumnOrder(1);
+                        .HasColumnType("int");
 
                     b.HasKey("ContractId", "ClauseId");
 
@@ -562,6 +608,23 @@ namespace FSA_3S.Migrations
                     b.Navigation("Customer");
 
                     b.Navigation("Updater");
+                });
+
+            modelBuilder.Entity("FSA_3S.Models.Entities.AuditEntity", b =>
+                {
+                    b.HasOne("FSA_3S.Models.Entities.ContractEntity", "Contract")
+                        .WithMany()
+                        .HasForeignKey("ContractId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("FSA_3S.Models.Entities.RealEstateEntity", "RealEstate")
+                        .WithMany()
+                        .HasForeignKey("RealEstateId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Contract");
+
+                    b.Navigation("RealEstate");
                 });
 
             modelBuilder.Entity("FSA_3S.Models.Entities.ContractEntity", b =>

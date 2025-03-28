@@ -1,5 +1,6 @@
 ﻿using FSA_3S.Enum;
 using FSA_3S.Helpers;
+using FSA_3S.Models;
 using FSA_3S.Models.Entities;
 using FSA_3S.Models.Requests;
 using FSA_3S.Models.Respone;
@@ -7,17 +8,20 @@ using FSA_3S.Repositories.Interface;
 using FSA_3S.Repositories.Repository;
 using FSA_3S.Services.Interface;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 
 namespace FSA_3S.Services.Service
 {
     public class ContractService(
         IContractRepository contractRepository,
+        AppDbContext context,
         ICustomerRepository customerRepository,
         IRealEstateRepository realEstateRepository,
         IHttpContextAccessor httpContextAccessor) : IContractService
     {
         private readonly IContractRepository _contractRepository = contractRepository;
+        private readonly AppDbContext _context = context;
         private readonly ICustomerRepository _customerRepository = customerRepository;
         private readonly IHttpContextAccessor _httpContextAccessor = httpContextAccessor;
         private readonly IRealEstateRepository _realEstateRepository = realEstateRepository;
@@ -36,15 +40,6 @@ namespace FSA_3S.Services.Service
             int buyerId = await GetOrCreateCustomerAsync(request.Buyer);
             int sellerId = await GetOrCreateCustomerAsync(request.Seller);
 
-            var realEstates = await _realEstateRepository.GetRealEstateBasicInfoAsync();
-            var realEstate = realEstates.FirstOrDefault(r => r.RealEstateId == request.RealEstateId)
-                ?? throw new KeyNotFoundException("Real estate property not found.");
-
-            if (realEstate.Seller != sellerId)
-            {
-                throw new UnauthorizedAccessException("Seller ID does not match the owner of the real estate.");
-            }
-
             var contract = new ContractEntity
             {
                 RealEstateId = request.RealEstateId,
@@ -59,6 +54,17 @@ namespace FSA_3S.Services.Service
                 UpdatedAt = null,
             };
             var createdContract = await _contractRepository.AddContractAsync(contract);
+
+            var audit = new AuditEntity
+            {
+                 //= createdContract.ContractId,
+                EntityType = nameof(ContractEntity),
+                CreatedBy = createdBy,
+                CreatedAt = createdContract.CreatedAt
+            };
+
+            _context.Audits.Add(audit);
+            await _context.SaveChangesAsync();
 
             var mappings = new List<MappingContractCustomerEntity>
     {
@@ -156,13 +162,6 @@ namespace FSA_3S.Services.Service
             int buyerId = await GetOrCreateCustomerAsync(request.Buyer);
             int sellerId = await GetOrCreateCustomerAsync(request.Seller);
             var realEstates = await _realEstateRepository.GetRealEstateBasicInfoAsync();
-            var realEstate = realEstates.FirstOrDefault(r => r.RealEstateId == request.RealEstateId)
-                ?? throw new KeyNotFoundException("Real estate property not found.");
-
-            if (realEstate.Seller != sellerId)
-            {
-                throw new UnauthorizedAccessException("Seller ID does not match the owner of the real estate.");
-            }
 
             // Cập nhật thông tin hợp đồng
             contract.RealEstateId = request.RealEstateId;
@@ -175,21 +174,22 @@ namespace FSA_3S.Services.Service
                 ?? throw new UnauthorizedAccessException("Invalid or missing user ID.");
             contract.UpdatedAt = DateTime.UtcNow;
 
-
-            //if (contract.RealEstateId == null)
-            //{
-            //    throw new KeyNotFoundException("Real estate property not found.");
-            //}
-
-            //if (contract.RealEstateId != C) // Chắc chắn SellerId là kiểu int?
-            //{
-            //    throw new UnauthorizedAccessException("Seller ID does not match the owner of the real estate.");
-            //}
             await _contractRepository.UpdateContractAsync(contract);
 
             // Xóa dữ liệu cũ trước khi thêm mới
             await _contractRepository.DeleteMappingsByContractIdAsync(contractId);
             await _contractRepository.DeleteClauseMappingsByContractIdAsync(contractId);
+
+            var audit = new AuditEntity
+            {
+                //EntityId = contract.ContractId, // Ghi lại ID của contract được cập nhật
+                EntityType = nameof(ContractEntity),
+                UpdatedBy = contract.UpdatedBy,
+                UpdatedAt = contract.UpdatedAt
+            };
+
+            _context.Audits.Add(audit);
+            await _context.SaveChangesAsync();
 
             var mappings = new List<MappingContractCustomerEntity>
     {
@@ -198,14 +198,7 @@ namespace FSA_3S.Services.Service
             ContractId = contract.ContractId,
             BuyerId = buyerId,
             SellerId = sellerId,
-            //CustomerType = CustomerTypeEnum.Buyer
         },
-        //new()
-        //{
-        //    ContractId = contract.ContractId,
-        //    SellerId = sellerId,
-        //    CustomerType = CustomerTypeEnum.Seller
-        //}
     };
 
             await _contractRepository.AddMappingsAsync(mappings);

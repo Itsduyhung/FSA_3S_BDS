@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace FSA_3S.Models.Entities
 {
     [Table("realestate")]
-    public class RealEstateEntity
+    public class RealEstateEntity : IAuditableEntity
     {
         [Key]
         [Column("realEstateId")]

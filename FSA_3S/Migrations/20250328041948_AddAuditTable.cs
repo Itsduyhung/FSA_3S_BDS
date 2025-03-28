@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FSA_3S.Migrations
 {
     /// <inheritdoc />
-    public partial class UpdateMappingContractCustomerRelation : Migration
+    public partial class AddAuditTable : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -33,6 +33,8 @@ namespace FSA_3S.Migrations
                     customerId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     fullname = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    email = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    gender = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     phonenumber = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: true),
                     address = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     CCCD = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
@@ -243,7 +245,7 @@ namespace FSA_3S.Migrations
                     realEstateId = table.Column<int>(type: "int", nullable: true),
                     contracttype = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     contractstatus = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    statuspayment = table.Column<int>(type: "int", nullable: false),
+                    statuspayment = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     startdate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     enddate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     createdBy = table.Column<int>(type: "int", nullable: false),
@@ -273,24 +275,55 @@ namespace FSA_3S.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "mappingcontractclause",
+                name: "Audit",
                 columns: table => new
                 {
-                    contractId = table.Column<int>(type: "int", nullable: false),
-                    clauseId = table.Column<int>(type: "int", nullable: false)
+                    AuditId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EntityType = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    ContractId = table.Column<int>(type: "int", nullable: true),
+                    RealEstateId = table.Column<int>(type: "int", nullable: true),
+                    CreatedBy = table.Column<int>(type: "int", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_mappingcontractclause", x => new { x.contractId, x.clauseId });
+                    table.PrimaryKey("PK_Audit", x => x.AuditId);
                     table.ForeignKey(
-                        name: "FK_mappingcontractclause_clause_clauseId",
-                        column: x => x.clauseId,
+                        name: "FK_Audit_contract_ContractId",
+                        column: x => x.ContractId,
+                        principalTable: "contract",
+                        principalColumn: "contractId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Audit_realestate_RealEstateId",
+                        column: x => x.RealEstateId,
+                        principalTable: "realestate",
+                        principalColumn: "realEstateId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "mappingcontractclause",
+                columns: table => new
+                {
+                    ContractId = table.Column<int>(type: "int", nullable: false),
+                    ClauseId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_mappingcontractclause", x => new { x.ContractId, x.ClauseId });
+                    table.ForeignKey(
+                        name: "FK_mappingcontractclause_clause_ClauseId",
+                        column: x => x.ClauseId,
                         principalTable: "clause",
                         principalColumn: "clauseId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_mappingcontractclause_contract_contractId",
-                        column: x => x.contractId,
+                        name: "FK_mappingcontractclause_contract_ContractId",
+                        column: x => x.ContractId,
                         principalTable: "contract",
                         principalColumn: "contractId",
                         onDelete: ReferentialAction.Cascade);
@@ -304,8 +337,7 @@ namespace FSA_3S.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     contractId = table.Column<int>(type: "int", nullable: false),
                     buyerId = table.Column<int>(type: "int", nullable: true),
-                    sellerId = table.Column<int>(type: "int", nullable: true),
-                    customertype = table.Column<int>(type: "int", nullable: false)
+                    sellerId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -344,6 +376,16 @@ namespace FSA_3S.Migrations
                 column: "UpdaterUserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Audit_ContractId",
+                table: "Audit",
+                column: "ContractId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Audit_RealEstateId",
+                table: "Audit",
+                column: "RealEstateId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_contract_createdBy",
                 table: "contract",
                 column: "createdBy");
@@ -359,9 +401,9 @@ namespace FSA_3S.Migrations
                 column: "updatedBy");
 
             migrationBuilder.CreateIndex(
-                name: "IX_mappingcontractclause_clauseId",
+                name: "IX_mappingcontractclause_ClauseId",
                 table: "mappingcontractclause",
-                column: "clauseId");
+                column: "ClauseId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_mappingcontractcustomer_buyerId",
@@ -417,6 +459,9 @@ namespace FSA_3S.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Audit");
+
             migrationBuilder.DropTable(
                 name: "mappingcontractclause");
 

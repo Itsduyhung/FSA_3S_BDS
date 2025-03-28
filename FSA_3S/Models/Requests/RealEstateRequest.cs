@@ -22,8 +22,8 @@ namespace FSA_3S.Models.Requests
         /// <summary>
         /// Trạng thái của bất động sản (bắt buộc)
         /// </summary>
-        [Required(ErrorMessage = "Trạng thái là bắt buộc.")]
-        [EnumDataType(typeof(RealEstateStatusEnum), ErrorMessage = "Trạng thái không hợp lệ.")]
+        //[Required(ErrorMessage = "Trạng thái là bắt buộc.")]
+        //[EnumDataType(typeof(RealEstateStatusEnum), ErrorMessage = "Trạng thái không hợp lệ.")]
         public RealEstateStatusEnum RealEstateStatus { get; set; }
 
         /// <summary>

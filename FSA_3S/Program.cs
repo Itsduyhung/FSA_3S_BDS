@@ -37,6 +37,7 @@ builder.Services.AddScoped<IContractService, ContractService>();
 builder.Services.AddScoped<IRealEstateService, RealEstateService>();
 builder.Services.AddScoped <CloudinaryService>();
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
+builder.Services.AddScoped<IAuditService, AuditService>();
 
 
 // --- 2.2 Resign Repository

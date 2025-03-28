@@ -3,6 +3,7 @@ using FSA_3S.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microsoft.Extensions.Configuration;
+using FSA_3S.Data.Configuration;
 
 namespace FSA_3S.Models
 {
@@ -68,6 +69,8 @@ namespace FSA_3S.Models
                 .WithMany(c => c.ContractClauses)
                 .HasForeignKey(mc => mc.ClauseId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.ApplyConfiguration(new AuditConfiguration());
         }
 
         public DbSet<UserEntity> Users { get; set; }
@@ -79,6 +82,6 @@ namespace FSA_3S.Models
         public DbSet<CustomerEntity> Customers { get; set; }
         public DbSet<MappingContractCustomerEntity> MappingContractCustomers { get; set; }
         public DbSet<MappingContractClauseEntity> MappingContractClauseEntities { get; set; }
-
+        public DbSet<AuditEntity> Audits { get; set; }
     }
 }
