@@ -17,5 +17,6 @@ namespace FSA_3S.Repositories.Interface
         Task DeleteClauseMappingsByContractIdAsync(int contractId);
         //Method API Get All Contract
         Task<List<ContractEntity>> GetAllContractsAsync();
+        Task<List<int>> GetDeletedContractIdsAsync();
     }
 }

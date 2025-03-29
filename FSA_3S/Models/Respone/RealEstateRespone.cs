@@ -15,7 +15,7 @@ namespace FSA_3S.Models.Respone
         public string? ImagePath { get; set; }
         public string? Address { get; set; }
         public string? Description { get; set; }
-        public int CreatedBy { get; set; }
+        public int? CreatedBy { get; set; }
         public int? UpdatedBy { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }

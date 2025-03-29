@@ -25,8 +25,8 @@ namespace FSA_3S.Repositories.Repository
         public async Task<RealEstateEntity?> GetByIdAsync(int id)
         {
             return await _context.RealEstates
-                .Include(r => r.CreatedBy)
-                .Include(r => r.UpdatedBy)
+                .Include(r => r.Creator)
+                .Include(r => r.Updater)
                 .FirstOrDefaultAsync(r => r.RealEstateId == id);
         }
         /// <summary>

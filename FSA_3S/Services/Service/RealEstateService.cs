@@ -50,9 +50,14 @@ namespace FSA_3S.Services.Service
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = null,
             };
+
+            _context.RealEstates.Add(realEstate);
+            await _context.SaveChangesAsync();
+
             var audit = new AuditEntity
             {
-                EntityType = nameof(ContractEntity),
+                RealEstateId = realEstate.RealEstateId,
+                EntityType = nameof(RealEstateEntity),
                 CreatedBy = realEstate.CreatedBy,
                 CreatedAt = realEstate.CreatedAt
             };
@@ -60,38 +65,30 @@ namespace FSA_3S.Services.Service
             _context.Audits.Add(audit);
             await _context.SaveChangesAsync();
 
-            try
+            return new RealEstateRespone
             {
-                var result = await _realestaterepository.CreateAsync(realEstate);
-
-                return new RealEstateRespone
-                {
-                    RealEstateId = result.RealEstateId,
-                    RealEstateName = result.RealEstateName,
-                    RealEstateType = result.RealEstateType,
-                    RealEstateStatus = RealEstateStatusEnum.Waiting_for_approval,
-                    Price = result.Price,
-                    Seller = result.Seller,
-                    Coordinate = result.Coordinate,
-                    SaleDate = result.SaleDate,
-                    ImagePath = result.ImagePath,
-                    Address = result.Address,
-                    Description = result.Description,
-                    CreatedBy = result.CreatedBy,
-                    UpdatedBy = result.UpdatedBy,
-                    CreatedAt = result.CreatedAt,
-                    UpdatedAt = result.UpdatedAt
-                };
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"[CreateAsync] Failed to create real estate: {ex.InnerException?.Message ?? ex.Message}", ex);
-            }
+                RealEstateId = realEstate.RealEstateId,
+                RealEstateName = realEstate.RealEstateName,
+                RealEstateType = realEstate.RealEstateType,
+                RealEstateStatus = RealEstateStatusEnum.Waiting_for_approval,
+                Price = realEstate.Price,
+                Seller = realEstate.Seller,
+                Coordinate = realEstate.Coordinate,
+                SaleDate = realEstate.SaleDate,
+                ImagePath = realEstate.ImagePath,
+                Address = realEstate.Address,
+                Description = realEstate.Description,
+                CreatedBy = realEstate.CreatedBy,
+                UpdatedBy = realEstate.UpdatedBy,
+                CreatedAt = realEstate.CreatedAt,
+                UpdatedAt = realEstate.UpdatedAt
+            };
         }
         public async Task<RealEstateEntity?> GetByIdAsync(int id)
         {
             return await _realestaterepository.GetByIdAsync(id);
         }
+
         /// <summary>
         /// API Get for RealEstate (All)
         /// </summary>
@@ -127,9 +124,14 @@ namespace FSA_3S.Services.Service
         /// <returns></returns>
         public async Task<RealEstateRespone> UpdateRealEstateAsync(int id, RealEstateRequest request)
         {
-            // Dùng FindAsync + Explicit Loading
             var realEstate = await _realestaterepository.GetByIdForPutAsync(id);
             if (realEstate == null) return null;
+
+            var UpdatedBy = UserIdHelper.GetUserId(_httpContextAccessor);
+            if (UpdatedBy == null)
+            {
+                throw new UnauthorizedAccessException("Invalid or missing user ID.");
+            }
 
             realEstate.RealEstateName = request.Name;
             realEstate.RealEstateType = request.RealEstateType;
@@ -140,8 +142,7 @@ namespace FSA_3S.Services.Service
             realEstate.Coordinate = request.Coordinate;
             realEstate.Address = request.Address;
             realEstate.Description = request.Description;
-            realEstate.UpdatedBy = UserIdHelper.GetUserId(_httpContextAccessor)
-    ?? throw new UnauthorizedAccessException("Invalid or missing user ID.");
+            realEstate.UpdatedBy = UpdatedBy;
             realEstate.UpdatedAt = DateTime.UtcNow;
 
             if (request.ImagePath != null)
@@ -149,19 +150,23 @@ namespace FSA_3S.Services.Service
                 realEstate.ImagePath = await _cloudinaryService.UploadImageAsync(request.ImagePath);
             }
 
-            await _realestaterepository.UpdateAsync(realEstate);
-
-            var audit = new AuditEntity
-            {
-                EntityType = nameof(ContractEntity),
-                UpdatedBy = realEstate.UpdatedBy,
-                UpdatedAt = realEstate.UpdatedAt
-            };
-
-            _context.Audits.Add(audit);
+            _context.Entry(realEstate).State = EntityState.Modified;
             await _context.SaveChangesAsync();
 
-            var response = new RealEstateRespone
+            if (realEstate.RealEstateId > 0)
+            {
+                var audit = new AuditEntity
+                {
+                    RealEstateId = realEstate.RealEstateId,
+                    EntityType = nameof(RealEstateEntity),
+                    UpdatedBy = realEstate.UpdatedBy,
+                    UpdatedAt = realEstate.UpdatedAt
+                };
+                _context.Audits.Add(audit);
+                await _context.SaveChangesAsync();
+            }
+
+            return new RealEstateRespone
             {
                 RealEstateId = realEstate.RealEstateId,
                 RealEstateName = realEstate.RealEstateName,
@@ -179,9 +184,8 @@ namespace FSA_3S.Services.Service
                 CreatedAt = realEstate.CreatedAt,
                 UpdatedAt = realEstate.UpdatedAt
             };
-
-            return response;
         }
+
         /// <summary>
         /// API Delete RealEstate
         /// </summary>
@@ -189,6 +193,24 @@ namespace FSA_3S.Services.Service
         /// <returns></returns>
         public async Task<bool> DeleteRealEstateAsync(int id)
         {
+            var realEstate = await _realestaterepository.GetByIdAsync(id);
+            if (realEstate == null) return false;
+
+            var deletedBy = UserIdHelper.GetUserId(_httpContextAccessor)
+                            ?? throw new UnauthorizedAccessException("Invalid or missing user ID.");
+
+            var audit = new AuditEntity
+            {
+                EntityType = nameof(RealEstateEntity),
+                RealEstateId = realEstate.RealEstateId,
+                UpdatedBy = deletedBy,
+                UpdatedAt = DateTime.UtcNow,
+                IsDeleted = true
+            };
+
+            _context.Audits.Add(audit);
+            await _context.SaveChangesAsync();
+
             var isDeleted = await _realestaterepository.DeleteAsync(id);
             return isDeleted;
         }

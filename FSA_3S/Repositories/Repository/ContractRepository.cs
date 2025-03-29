@@ -80,5 +80,16 @@ namespace FSA_3S.Repositories.Repository
             _context.Contracts.Remove(contract);
             await _context.SaveChangesAsync();
         }
+        public async Task<List<int>> GetDeletedContractIdsAsync()
+        {
+            var deletedContracts = await _context.Audits
+                .Where(a => a.IsDeleted == true && a.ContractId != null)
+                .Select(a => a.ContractId.Value)
+                .ToListAsync();
+
+            Console.WriteLine($"[DEBUG] Deleted Contracts: {string.Join(", ", deletedContracts)}");
+
+            return deletedContracts;
+        }
     }
 }

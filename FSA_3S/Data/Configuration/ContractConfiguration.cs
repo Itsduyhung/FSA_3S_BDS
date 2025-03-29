@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using FSA_3S.Models.Entities;
+using FSA_3S.Helpers;
 
 namespace FSA_3S.Data.Configuration
 {
@@ -70,6 +71,11 @@ namespace FSA_3S.Data.Configuration
                 .HasMany(e => e.ContractClauses)
                 .WithOne(mc => mc.Contract)
                 .HasForeignKey(mc => mc.ContractId);
+
+            builder.HasMany(r => r.Audits)
+                   .WithOne(a => a.Contract)
+                   .HasForeignKey(a => a.RealEstateId)
+                   .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

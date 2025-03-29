@@ -52,6 +52,16 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "FSA_3S.Controllers.AuditController",
+    "Method": "GetDeletedContracts",
+    "RelativePath": "api/Audit/deleted-contracts",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "FSA_3S.Controllers.ContractController",
     "Method": "CreateContract",
     "RelativePath": "api/contracts",

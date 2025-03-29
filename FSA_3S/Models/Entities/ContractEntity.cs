@@ -34,7 +34,7 @@ namespace FSA_3S.Models.Entities
 
         [ForeignKey("Creator")]
         [Column("createdBy")]
-        public int CreatedBy { get; set; }
+        public int? CreatedBy { get; set; }
         public UserEntity? Creator { get; set; }
 
         [ForeignKey("Updater")]
@@ -50,5 +50,6 @@ namespace FSA_3S.Models.Entities
 
         public List<MappingContractCustomerEntity> MappingContractCustomer { get; set; } = [];
         public List<MappingContractClauseEntity> ContractClauses { get; set; } = [];
+        public ICollection<AuditEntity> Audits { get; set; } = [];
     }
 }

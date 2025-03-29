@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FSA_3S.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250328041948_AddAuditTable")]
-    partial class AddAuditTable
+    [Migration("20250328174906_FixAuditRelation")]
+    partial class FixAuditRelation
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -96,38 +96,59 @@ namespace FSA_3S.Migrations
                 {
                     b.Property<int>("AuditId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("auditId");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AuditId"));
 
-                    b.Property<int?>("ContractId")
+                    b.Property<int?>("ContractEntityContractId")
                         .HasColumnType("int");
+
+                    b.Property<int?>("ContractId")
+                        .HasColumnType("int")
+                        .HasColumnName("contractId");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime2")
+                        .HasColumnName("createdAt");
 
                     b.Property<int>("CreatedBy")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("createdBy");
 
                     b.Property<string>("EntityType")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("entityType");
+
+                    b.Property<bool?>("IsDeleted")
+                        .HasColumnType("bit")
+                        .HasColumnName("isDeleted");
 
                     b.Property<int?>("RealEstateId")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("realEstateId");
 
                     b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime2")
+                        .HasColumnName("updatedAt");
 
                     b.Property<int?>("UpdatedBy")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("updatedBy");
 
                     b.HasKey("AuditId");
 
+                    b.HasIndex("ContractEntityContractId");
+
                     b.HasIndex("ContractId");
 
+                    b.HasIndex("CreatedBy");
+
                     b.HasIndex("RealEstateId");
+
+                    b.HasIndex("UpdatedBy");
 
                     b.ToTable("Audit", (string)null);
                 });
@@ -615,19 +636,37 @@ namespace FSA_3S.Migrations
 
             modelBuilder.Entity("FSA_3S.Models.Entities.AuditEntity", b =>
                 {
+                    b.HasOne("FSA_3S.Models.Entities.ContractEntity", null)
+                        .WithMany("Audits")
+                        .HasForeignKey("ContractEntityContractId");
+
                     b.HasOne("FSA_3S.Models.Entities.ContractEntity", "Contract")
                         .WithMany()
                         .HasForeignKey("ContractId")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("FSA_3S.Models.Entities.RealEstateEntity", "RealEstate")
+                    b.HasOne("FSA_3S.Models.Entities.UserEntity", "Creator")
                         .WithMany()
+                        .HasForeignKey("CreatedBy")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FSA_3S.Models.Entities.RealEstateEntity", "RealEstate")
+                        .WithMany("Audits")
                         .HasForeignKey("RealEstateId")
                         .OnDelete(DeleteBehavior.Restrict);
 
+                    b.HasOne("FSA_3S.Models.Entities.UserEntity", "Updater")
+                        .WithMany()
+                        .HasForeignKey("UpdatedBy");
+
                     b.Navigation("Contract");
 
+                    b.Navigation("Creator");
+
                     b.Navigation("RealEstate");
+
+                    b.Navigation("Updater");
                 });
 
             modelBuilder.Entity("FSA_3S.Models.Entities.ContractEntity", b =>
@@ -765,6 +804,8 @@ namespace FSA_3S.Migrations
 
             modelBuilder.Entity("FSA_3S.Models.Entities.ContractEntity", b =>
                 {
+                    b.Navigation("Audits");
+
                     b.Navigation("ContractClauses");
 
                     b.Navigation("MappingContractCustomer");
@@ -783,6 +824,8 @@ namespace FSA_3S.Migrations
 
             modelBuilder.Entity("FSA_3S.Models.Entities.RealEstateEntity", b =>
                 {
+                    b.Navigation("Audits");
+
                     b.Navigation("Contracts");
                 });
 

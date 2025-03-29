@@ -16,14 +16,14 @@ namespace FSA_3S.Data.Configuration
                 .IsRequired()
                 .HasMaxLength(50);
 
+            builder.HasOne(a => a.RealEstate)
+                .WithMany(r => r.Audits)
+                .HasForeignKey(a => a.RealEstateId)
+                .OnDelete(DeleteBehavior.Restrict);
+
             builder.HasOne(a => a.Contract)
                 .WithMany()
                 .HasForeignKey(a => a.ContractId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            builder.HasOne(a => a.RealEstate)
-                .WithMany()
-                .HasForeignKey(a => a.RealEstateId)
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }

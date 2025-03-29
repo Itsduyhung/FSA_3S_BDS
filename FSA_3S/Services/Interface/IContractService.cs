@@ -9,5 +9,6 @@ namespace FSA_3S.Services.Interface
         Task<ContractResponse?> UpdateContractAsync(int contractId, ContractRequest request);
         Task<bool> DeleteContractAsync(int contractId);
         Task<List<ContractResponse>> GetAllContractsAsync();
+        Task<List<int>> GetDeletedContractsAsync();
     }
 }

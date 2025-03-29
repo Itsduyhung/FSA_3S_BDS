@@ -55,10 +55,10 @@ namespace FSA_3S.Models.Entities
         [Column("description")]
         public string? Description { get; set; }
 
-        [Required]
+        //[Required]
         [ForeignKey(nameof(Creator))]
         [Column("createdBy")]
-        public int CreatedBy { get; set; }
+        public int? CreatedBy { get; set; }
         public UserEntity? Creator { get; set; }
 
         [ForeignKey(nameof(Updater))]
@@ -71,6 +71,8 @@ namespace FSA_3S.Models.Entities
 
         [Column("updatedat")]
         public DateTime? UpdatedAt { get; set; }
+
+        public ICollection<AuditEntity> Audits { get; set; } = [];
 
         public List<ContractEntity> Contracts { get; set; } = [];
     }

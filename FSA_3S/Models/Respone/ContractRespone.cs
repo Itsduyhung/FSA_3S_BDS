@@ -15,7 +15,7 @@ namespace FSA_3S.Models.Respone
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public required List<int> ClauseIds { get; set; }
-        public int CreatedBy { get; set; }
+        public int? CreatedBy { get; set; }
         public int? UpdatedBy { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }

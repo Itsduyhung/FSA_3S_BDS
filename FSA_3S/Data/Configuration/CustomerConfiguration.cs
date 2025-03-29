@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using FSA_3S.Models.Entities;
 
-namespace _3SLand.Data.Configuration
+namespace FSA_3S.Data.Configuration
 {
     public class CustomerConfiguration : IEntityTypeConfiguration<CustomerEntity>
     {

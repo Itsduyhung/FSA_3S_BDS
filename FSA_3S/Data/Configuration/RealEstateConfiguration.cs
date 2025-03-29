@@ -26,12 +26,10 @@ namespace FSA_3S.Data.Configuration
                    .IsRequired();
 
             builder.Property(r => r.Seller)
-                .IsRequired()
-                   .HasMaxLength(20);
+                   .IsRequired();
 
             builder.Property(r => r.SaleDate)
-                .IsRequired()
-                   .HasMaxLength(20);
+                   .IsRequired();
 
             builder.Property(r => r.Coordinate)
                    .HasMaxLength(20);
@@ -51,6 +49,12 @@ namespace FSA_3S.Data.Configuration
                    .WithMany(c => c.RealEstates)
                    .HasForeignKey(r => r.Seller)
                    .OnDelete(DeleteBehavior.Cascade);
+
+            // ✅ Thiết lập quan hệ 1-N với AuditEntity
+            builder.HasMany(r => r.Audits)
+                   .WithOne(a => a.RealEstate)
+                   .HasForeignKey(a => a.RealEstateId)
+                   .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
