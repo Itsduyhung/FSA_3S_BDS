@@ -83,5 +83,6 @@ namespace FSA_3S.Models
         public DbSet<MappingContractCustomerEntity> MappingContractCustomers { get; set; }
         public DbSet<MappingContractClauseEntity> MappingContractClauseEntities { get; set; }
         public DbSet<AuditEntity> Audits { get; set; }
+        public DbSet<WorkEntity> WorkEntity { get; set; }
     }
 }

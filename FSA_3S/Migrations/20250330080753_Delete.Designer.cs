@@ -4,6 +4,7 @@ using FSA_3S.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FSA_3S.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250330080753_Delete")]
+    partial class Delete
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -634,7 +637,7 @@ namespace FSA_3S.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("work");
+                    b.ToTable("WorkEntity");
                 });
 
             modelBuilder.Entity("FSA_3S.Models.Entities.AppointmentEntity", b =>

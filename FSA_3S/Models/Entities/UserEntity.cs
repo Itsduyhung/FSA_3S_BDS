@@ -77,6 +77,7 @@ namespace FSA_3S.Models.Entities
 
         [InverseProperty("Updater")]
         public List<RealEstateEntity>? RealEstatesUpdated { get; set; }
+        public ICollection<WorkEntity> Works { get; set; } = [];
 
         // Mapping với Appointment
         public List<MappingUserAppointmentEntity>? MappingUserAppointments { get; set; }

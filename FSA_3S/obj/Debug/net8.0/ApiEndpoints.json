@@ -328,5 +328,68 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "FSA_3S.Controllers.WorkController",
+    "Method": "CreateWork",
+    "RelativePath": "api/Work",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "FSA_3S.Models.Requests.WorkRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FSA_3S.Controllers.WorkController",
+    "Method": "GetAllWorksAsync",
+    "RelativePath": "api/Work",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FSA_3S.Controllers.WorkController",
+    "Method": "UpdateWorkAsync",
+    "RelativePath": "api/Work/{workId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "workId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "FSA_3S.Models.Requests.WorkRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FSA_3S.Controllers.WorkController",
+    "Method": "DeleteWorkAsync",
+    "RelativePath": "api/Work/{workId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "workId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

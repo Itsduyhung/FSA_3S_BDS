@@ -38,12 +38,14 @@ builder.Services.AddScoped<IRealEstateService, RealEstateService>();
 builder.Services.AddScoped <CloudinaryService>();
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<IAuditService, AuditService>();
+builder.Services.AddScoped<IWorkService, WorkService>();
 
 
 // --- 2.2 Resign Repository
 builder.Services.AddScoped<IStaffRepository, StaffRepository>();
 builder.Services.AddScoped<IContractRepository, ContractRepository>();
 builder.Services.AddScoped<IRealEstateRepository, RealEstateRepository>();
+builder.Services.AddScoped<IWorkRepository, WorkRepository>();
 
 // --- 3. Cấu hình JWT Authentication ---
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

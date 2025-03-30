@@ -55,37 +55,36 @@ namespace FSA_3S.Services.Service
             };
 
             // Đặt vào Transaction để kiểm tra lỗi và đảm bảo lưu được vào DB
-            using (var transaction = await _context.Database.BeginTransactionAsync())
+            using var transaction = await _context.Database.BeginTransactionAsync();
+            try
             {
-                try
+                // Kiểm tra dữ liệu đầu vào
+                if (!await _context.RealEstates.AnyAsync(x => x.RealEstateId == request.RealEstateId))
+                    throw new Exception("Invalid RealEstateId");
+
+                // Thêm hợp đồng
+                _context.Entry(contract).State = EntityState.Added;
+
+                // Lưu hợp đồng
+                var result = await _context.SaveChangesAsync();
+                Console.WriteLine($"Rows affected (contract): {result}");
+
+                // Tạo bản ghi AuditEntity cho hợp đồng
+                var audit = new AuditEntity
                 {
-                    // Kiểm tra dữ liệu đầu vào
-                    if (!await _context.RealEstates.AnyAsync(x => x.RealEstateId == request.RealEstateId))
-                        throw new Exception("Invalid RealEstateId");
+                    ContractId = contract.ContractId,
+                    EntityType = nameof(ContractEntity),
+                    CreatedBy = createdBy,
+                    CreatedAt = contract.CreatedAt
+                };
 
-                    // Thêm hợp đồng
-                    _context.Entry(contract).State = EntityState.Added;
+                _context.Entry(audit).State = EntityState.Added;
 
-                    // Lưu hợp đồng
-                    var result = await _context.SaveChangesAsync();
-                    Console.WriteLine($"Rows affected (contract): {result}");
+                result = await _context.SaveChangesAsync();
+                Console.WriteLine($"Rows affected (audit): {result}");
 
-                    // Tạo bản ghi AuditEntity cho hợp đồng
-                    var audit = new AuditEntity
-                    {
-                        ContractId = contract.ContractId,
-                        EntityType = nameof(ContractEntity),
-                        CreatedBy = createdBy,
-                        CreatedAt = contract.CreatedAt
-                    };
-
-                    _context.Entry(audit).State = EntityState.Added;
-
-                    result = await _context.SaveChangesAsync();
-                    Console.WriteLine($"Rows affected (audit): {result}");
-
-                    // Tạo quan hệ giữa Contract và Customer (Buyer/Seller)
-                    var mappings = new List<MappingContractCustomerEntity>
+                // Tạo quan hệ giữa Contract và Customer (Buyer/Seller)
+                var mappings = new List<MappingContractCustomerEntity>
             {
                 new()
                 {
@@ -95,44 +94,43 @@ namespace FSA_3S.Services.Service
                 }
             };
 
-                    await _contractRepository.AddMappingsAsync(mappings);
+                await _contractRepository.AddMappingsAsync(mappings);
 
-                    // Thêm các điều khoản cho hợp đồng
-                    var clauseMappings = request.ClauseIds.Select(clauseId => new MappingContractClauseEntity
-                    {
-                        ContractId = contract.ContractId,
-                        ClauseId = clauseId
-                    }).ToList();
-
-                    await _contractRepository.AddClauseMappingsAsync(clauseMappings);
-
-                    // ✅ Commit Transaction nếu mọi thứ thành công
-                    await transaction.CommitAsync();
-
-                    // Trả về kết quả sau khi tạo thành công
-                    return new ContractResponse
-                    {
-                        ContractId = contract.ContractId,
-                        RealEstateId = contract.RealEstateId,
-                        BuyerId = buyerId,
-                        SellerId = sellerId,
-                        ContractType = contract.ContractType,
-                        ContractStatus = contract.ContractStatus,
-                        StatusPayment = contract.StatusPayment,
-                        StartDate = contract.StartDate,
-                        EndDate = contract.EndDate,
-                        ClauseIds = request.ClauseIds,
-                        CreatedBy = contract.CreatedBy,
-                        CreatedAt = contract.CreatedAt
-                    };
-                }
-                catch (Exception ex)
+                // Thêm các điều khoản cho hợp đồng
+                var clauseMappings = request.ClauseIds.Select(clauseId => new MappingContractClauseEntity
                 {
-                    // ❌ Rollback nếu có lỗi
-                    await transaction.RollbackAsync();
-                    Console.WriteLine($"Error: {ex.Message}");
-                    throw;
-                }
+                    ContractId = contract.ContractId,
+                    ClauseId = clauseId
+                }).ToList();
+
+                await _contractRepository.AddClauseMappingsAsync(clauseMappings);
+
+                // ✅ Commit Transaction nếu mọi thứ thành công
+                await transaction.CommitAsync();
+
+                // Trả về kết quả sau khi tạo thành công
+                return new ContractResponse
+                {
+                    ContractId = contract.ContractId,
+                    RealEstateId = contract.RealEstateId,
+                    BuyerId = buyerId,
+                    SellerId = sellerId,
+                    ContractType = contract.ContractType,
+                    ContractStatus = contract.ContractStatus,
+                    StatusPayment = contract.StatusPayment,
+                    StartDate = contract.StartDate,
+                    EndDate = contract.EndDate,
+                    ClauseIds = request.ClauseIds,
+                    CreatedBy = contract.CreatedBy,
+                    CreatedAt = contract.CreatedAt
+                };
+            }
+            catch (Exception ex)
+            {
+                // ❌ Rollback nếu có lỗi
+                await transaction.RollbackAsync();
+                Console.WriteLine($"Error: {ex.Message}");
+                throw;
             }
         }
         private async Task<int> GetOrCreateCustomerAsync(PersonInfo personInfo)

@@ -4,6 +4,7 @@ using FSA_3S.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FSA_3S.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250330044523_AddWorkEntity")]
+    partial class AddWorkEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -630,11 +633,18 @@ namespace FSA_3S.Migrations
                         .HasColumnType("int")
                         .HasColumnName("userId");
 
+                    b.Property<int?>("userId")
+                        .HasColumnType("int");
+
                     b.HasKey("WorkId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("userId");
 
-                    b.ToTable("work");
+                    b.ToTable("WorkEntity", t =>
+                        {
+                            t.Property("userId")
+                                .HasColumnName("userId1");
+                        });
                 });
 
             modelBuilder.Entity("FSA_3S.Models.Entities.AppointmentEntity", b =>
@@ -821,9 +831,7 @@ namespace FSA_3S.Migrations
                 {
                     b.HasOne("FSA_3S.Models.Entities.UserEntity", "User")
                         .WithMany("Works")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("userId");
 
                     b.Navigation("User");
                 });
