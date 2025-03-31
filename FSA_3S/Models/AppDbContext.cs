@@ -28,13 +28,84 @@ namespace FSA_3S.Models
         {
             base.OnModelCreating(modelBuilder);
 
+            // Cấu hình cho UserEntity
             modelBuilder.Entity<UserEntity>()
                 .Property(u => u.Status)
                 .HasConversion(new EnumToStringConverter<UserStatusEnum>());
+
+            // Cấu hình cho ContractEntity
+            modelBuilder.Entity<ContractEntity>()
+                .Property(u => u.ContractStatus)
+                .HasConversion(new EnumToStringConverter<ContractStatusEnum>());
+
+            modelBuilder.Entity<ContractEntity>()
+                .Property(u => u.ContractType)
+                .HasConversion(new EnumToStringConverter<ContractTypeEnum>());
+
+            // Cấu hình cho RealEstateEntity
+            modelBuilder.Entity<RealEstateEntity>()
+                .Property(u => u.RealEstateStatus)
+                .HasConversion(new EnumToStringConverter<RealEstateStatusEnum>());
+
+            modelBuilder.Entity<RealEstateEntity>()
+                .Property(u => u.RealEstateType)
+                .HasConversion(new EnumToStringConverter<RealEstateTypeEnum>());
+
+            // Cấu hình cho AppointmentEntity
+            modelBuilder.Entity<AppointmentEntity>()
+                .HasMany(a => a.MappingUserAppointments)
+                .WithOne(m => m.Appointment)
+                .HasForeignKey(m => m.AppointmentId)
+                .OnDelete(DeleteBehavior.Cascade); // Hành vi xóa đệ quy
+
+            modelBuilder.Entity<AppointmentEntity>()
+                .HasOne(a => a.Customer)
+                .WithMany(c => c.Appointments)
+                .HasForeignKey(a => a.CustomerId)
+                .OnDelete(DeleteBehavior.Cascade); // Hành vi xóa đệ quy
+
+            // Cấu hình cho UserEntity
+            modelBuilder.Entity<UserEntity>()
+                .HasMany(u => u.MappingUserAppointments)
+                .WithOne(m => m.User)
+                .HasForeignKey(m => m.UserId)
+                .OnDelete(DeleteBehavior.Restrict); // Tránh xung đột bằng cách sử dụng Restrict
+
+            // Cấu hình cho MappingUserAppointmentEntity
+            modelBuilder.Entity<MappingUserAppointmentEntity>()
+                .HasKey(m => m.MappingUserAppointmentId);
+
+            modelBuilder.Entity<MappingUserAppointmentEntity>()
+                .HasOne(m => m.User)
+                .WithMany()
+                .HasForeignKey(m => m.UserId)
+                .OnDelete(DeleteBehavior.Restrict); // Tránh xung đột bằng cách sử dụng Restrict
+
+            modelBuilder.Entity<MappingUserAppointmentEntity>()
+                .HasOne(m => m.Creator)
+                .WithMany()
+                .HasForeignKey(m => m.CreatedBy)
+                .OnDelete(DeleteBehavior.Restrict); // Tránh xung đột bằng cách sử dụng Restrict
+
+            modelBuilder.Entity<MappingUserAppointmentEntity>()
+                .HasOne(m => m.Updater)
+                .WithMany()
+                .HasForeignKey(m => m.UpdatedBy)
+                .OnDelete(DeleteBehavior.Restrict); // Tránh xung đột bằng cách sử dụng Restrict
         }
+
+
 
         public DbSet<UserEntity> Users { get; set; }
         public DbSet<ReportEntity> Reports { get; set; }
         public DbSet<ContractEntity> Contracts { get; set; }
+        public DbSet<CustomerEntity> Customers { get; set; }
+        public DbSet<RealEstateEntity> RealEstates { get; set; }
+        public DbSet<AppointmentEntity> Appointments { get; set; }
+        public DbSet<MappingUserAppointmentEntity> MappingUserAppointments { get; set; }
+        public DbSet<MappingContractCustomerEntity> MappingContractCustomers { get; set; }
+        public DbSet<MappingContractClauseEntity> MappingContractClauseEntities { get; set; }
+        public DbSet<AuditEntity> Audits { get; set; }
+        public DbSet<WorkEntity> WorkEntity { get; set; }
     }
 }
