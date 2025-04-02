@@ -2,9 +2,8 @@
 {
     public enum ApprovalStatusEnum
     {
-        NotApproved = 1,
-        Approved = 2,
-        NotAllowed =3,
-
+        Waiting_for_approval = 1,
+        Approve = 2,
+        Reject = 3,
     }
 }

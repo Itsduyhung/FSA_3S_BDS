@@ -461,3 +461,9 @@ C:\Users\Laptop\Desktop\git\FSA_3S\obj\Debug\net8.0\FSA_3S.genruntimeconfig.cach
 C:\Users\Laptop\Desktop\git\FSA_3S\obj\Debug\net8.0\ref\FSA_3S.dll
 C:\Users\Laptop\Desktop\git\FSA_3S\bin\Debug\net8.0\CloudinaryDotNet.dll
 C:\Users\Laptop\Desktop\git\FSA_3S\bin\Debug\net8.0\Newtonsoft.Json.dll
+D:\CS\project_3s\FSA_3S\bin\Debug\net8.0\CloudinaryDotNet.dll
+D:\CS\project_3s\FSA_3S\bin\Debug\net8.0\Microsoft.Extensions.Diagnostics.Abstractions.dll
+D:\CS\project_3s\FSA_3S\bin\Debug\net8.0\Microsoft.Extensions.Hosting.Abstractions.dll
+D:\CS\project_3s\FSA_3S\bin\Debug\net8.0\Microsoft.Extensions.ObjectPool.dll
+D:\CS\project_3s\FSA_3S\bin\Debug\net8.0\Newtonsoft.Json.dll
+D:\CS\project_3s\FSA_3S\bin\Debug\net8.0\System.Net.WebSockets.WebSocketProtocol.dll

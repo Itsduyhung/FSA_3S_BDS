@@ -18,19 +18,6 @@ namespace FSA_3S.Data.Configuration
             builder.Property(w => w.UserId)
                    .IsRequired()
                    .HasColumnName("userId");
-
-            builder.Property(w => w.TimeOfWork)
-                   .IsRequired()
-                   .HasColumnName("time_of_work");
-
-            builder.Property(w => w.DesWork)
-                   .HasColumnName("des_work")
-                   .HasMaxLength(500);
-
-            builder.HasOne(w => w.User)
-                   .WithMany(u => u.Works)
-                   .HasForeignKey(w => w.UserId)
-                   .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

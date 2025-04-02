@@ -8,6 +8,7 @@ public class MappingUserAppointmentResponse
     public int AppointmentId { get; set; }
     public string? AppointmentTitle { get; set; } // Tiêu đề của cuộc hẹn
     public string? CustomerName { get; set; } // Tên của khách hàng
+    //public string? Title { get; set; }
     public ApprovalStatusEnum ApprovalStatus { get; set; }
     public DateOnly AppointmentDate { get; set; }
     public int CreatedBy { get; set; }

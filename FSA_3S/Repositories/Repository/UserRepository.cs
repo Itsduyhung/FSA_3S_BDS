@@ -22,5 +22,16 @@ namespace FSA_3S.Repositories.Repository
         {
             return await _context.Users.ToListAsync();
         }
+        /// <summary>
+        /// Notification
+        /// </summary>
+        /// <returns></returns>
+        public async Task<int> GetAdminIdAsync()
+        {
+            return await _context.Users
+                .Where(u => u.Role == "Admin")
+                .Select(u => u.UserId)
+                .FirstOrDefaultAsync();
+        }
     }
 }

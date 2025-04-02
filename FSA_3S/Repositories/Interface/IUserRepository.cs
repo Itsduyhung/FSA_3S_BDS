@@ -7,5 +7,7 @@ namespace FSA_3S.Repositories.Interface
         Task<UserEntity?> GetByIdAsync(int userId);
         Task UpdateAsync(UserEntity user);
         Task<IEnumerable<UserEntity>> GetAllAsync();
+
+        Task<int> GetAdminIdAsync();
     }
 }

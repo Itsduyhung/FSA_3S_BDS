@@ -49,9 +49,6 @@ namespace FSA_3S.Models.Entities
         [Column("updatedat")]
         public DateTime? UpdatedAt { get; set; }
 
-        public ICollection<MappingUserAppointmentEntity> MappingUserAppointments { get; set; } = new List<MappingUserAppointmentEntity>();
-
-       
+        public ICollection<MappingUserAppointmentEntity> MappingUserAppointments { get; set; } = [];
     }
-
 }

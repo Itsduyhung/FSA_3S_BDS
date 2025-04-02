@@ -92,10 +92,48 @@ namespace FSA_3S.Models
                 .WithMany()
                 .HasForeignKey(m => m.UpdatedBy)
                 .OnDelete(DeleteBehavior.Restrict); // Tránh xung đột bằng cách sử dụng Restrict
+
+            // Cấu hình cho NotificationEntity
+            modelBuilder.Entity<NotificationEntity>()
+                .ToTable("Notifications"); // Định nghĩa tên bảng trong DB (nếu cần thiết)
+
+            modelBuilder.Entity<NotificationEntity>()
+                .HasKey(n => n.NotificationId); // Đặt khóa chính
+
+            modelBuilder.Entity<NotificationEntity>()
+                .Property(n => n.NotificationId)
+                .HasColumnName("IdNotification"); // Định nghĩa tên cột cho khóa chính
+
+            modelBuilder.Entity<NotificationEntity>()
+                .Property(n => n.Title)
+                .IsRequired()  // Cột này là bắt buộc
+                .HasMaxLength(255); // Giới hạn độ dài tối đa cho cột Title
+
+            modelBuilder.Entity<NotificationEntity>()
+                .Property(n => n.Message)
+                .IsRequired(); // Cột Message là bắt buộc
+
+            modelBuilder.Entity<NotificationEntity>()
+                .Property(n => n.CreatedAt)
+                .HasDefaultValueSql("GETUTCDATE()"); // Đặt giá trị mặc định cho CreatedAt là thời gian UTC hiện tại
+
+            modelBuilder.Entity<NotificationEntity>()
+                .Property(n => n.IsRead)
+                .HasDefaultValue(false); // Đặt giá trị mặc định cho IsRead là false
+
+            modelBuilder.Entity<MappingUserNotificationEntity>()
+           .HasOne(m => m.Notification)  // Quan hệ với bảng Notification
+            .WithMany()  // Một Notification có thể có nhiều MappingUserNotification
+           .HasForeignKey(m => m.NotificationId)
+           .OnDelete(DeleteBehavior.Cascade); // Cascade khi xóa Notification
+
+            // Cấu hình quan hệ với bảng User (FK_User_UserId)
+            modelBuilder.Entity<MappingUserNotificationEntity>()
+                .HasOne(m => m.User)  // Quan hệ với bảng User
+                .WithMany()  // Một User có thể có nhiều MappingUserNotification
+                .HasForeignKey(m => m.UserId)
+                .OnDelete(DeleteBehavior.NoAction);
         }
-
-
-
         public DbSet<UserEntity> Users { get; set; }
         public DbSet<ReportEntity> Reports { get; set; }
         public DbSet<ContractEntity> Contracts { get; set; }
@@ -107,5 +145,7 @@ namespace FSA_3S.Models
         public DbSet<MappingContractClauseEntity> MappingContractClauseEntities { get; set; }
         public DbSet<AuditEntity> Audits { get; set; }
         public DbSet<WorkEntity> WorkEntity { get; set; }
+        public DbSet<NotificationEntity> Notifications { get; set; }
+        public DbSet<MappingUserNotificationEntity> MappingUserNotification { get; set; }
     }
 }

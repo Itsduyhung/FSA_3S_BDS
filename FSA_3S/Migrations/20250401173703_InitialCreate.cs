@@ -47,22 +47,6 @@ namespace FSA_3S.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "notification",
-                columns: table => new
-                {
-                    notificationId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    content = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    createdAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    notificationType = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    relatedId = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_notification", x => x.notificationId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "report",
                 columns: table => new
                 {
@@ -141,29 +125,32 @@ namespace FSA_3S.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "mappingusernotification",
+                name: "Notifications",
                 columns: table => new
                 {
-                    mappingUserNotificationId = table.Column<int>(type: "int", nullable: false)
+                    IdNotification = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    NotificationId = table.Column<int>(type: "int", nullable: false)
+                    SenderId = table.Column<int>(type: "int", nullable: true),
+                    ReceiverId = table.Column<int>(type: "int", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Message = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETUTCDATE()"),
+                    IsRead = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_mappingusernotification", x => x.mappingUserNotificationId);
+                    table.PrimaryKey("PK_Notifications", x => x.IdNotification);
                     table.ForeignKey(
-                        name: "FK_mappingusernotification_notification_NotificationId",
-                        column: x => x.NotificationId,
-                        principalTable: "notification",
-                        principalColumn: "notificationId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_mappingusernotification_user_UserId",
-                        column: x => x.UserId,
+                        name: "FK_Notifications_user_ReceiverId",
+                        column: x => x.ReceiverId,
                         principalTable: "user",
                         principalColumn: "userId",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Notifications_user_SenderId",
+                        column: x => x.SenderId,
+                        principalTable: "user",
+                        principalColumn: "userId");
                 });
 
             migrationBuilder.CreateTable(
@@ -217,18 +204,30 @@ namespace FSA_3S.Migrations
                     work_id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     userId = table.Column<int>(type: "int", nullable: false),
-                    time_of_work = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    des_work = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true)
+                    Monday = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MondayTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Tuesday = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TuesdayTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Wednesday = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    WednesdayTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Thursday = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ThursdayTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Friday = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FridayTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Saturday = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SaturdayTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Sunday = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SundayTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserEntityUserId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_work", x => x.work_id);
                     table.ForeignKey(
-                        name: "FK_work_user_userId",
-                        column: x => x.userId,
+                        name: "FK_work_user_UserEntityUserId",
+                        column: x => x.UserEntityUserId,
                         principalTable: "user",
-                        principalColumn: "userId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "userId");
                 });
 
             migrationBuilder.CreateTable(
@@ -278,6 +277,37 @@ namespace FSA_3S.Migrations
                         principalTable: "user",
                         principalColumn: "userId",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "mappingusernotification",
+                columns: table => new
+                {
+                    mappingUserNotificationId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    NotificationId = table.Column<int>(type: "int", nullable: false),
+                    UserEntityUserId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_mappingusernotification", x => x.mappingUserNotificationId);
+                    table.ForeignKey(
+                        name: "FK_mappingusernotification_Notifications_NotificationId",
+                        column: x => x.NotificationId,
+                        principalTable: "Notifications",
+                        principalColumn: "IdNotification",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_mappingusernotification_user_UserEntityUserId",
+                        column: x => x.UserEntityUserId,
+                        principalTable: "user",
+                        principalColumn: "userId");
+                    table.ForeignKey(
+                        name: "FK_mappingusernotification_user_UserId",
+                        column: x => x.UserId,
+                        principalTable: "user",
+                        principalColumn: "userId");
                 });
 
             migrationBuilder.CreateTable(
@@ -514,9 +544,24 @@ namespace FSA_3S.Migrations
                 column: "NotificationId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_mappingusernotification_UserEntityUserId",
+                table: "mappingusernotification",
+                column: "UserEntityUserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_mappingusernotification_UserId",
                 table: "mappingusernotification",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Notifications_ReceiverId",
+                table: "Notifications",
+                column: "ReceiverId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Notifications_SenderId",
+                table: "Notifications",
+                column: "SenderId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_realestate_createdBy",
@@ -534,9 +579,9 @@ namespace FSA_3S.Migrations
                 column: "updatedBy");
 
             migrationBuilder.CreateIndex(
-                name: "IX_work_userId",
+                name: "IX_work_UserEntityUserId",
                 table: "work",
-                column: "userId");
+                column: "UserEntityUserId");
         }
 
         /// <inheritdoc />
@@ -573,7 +618,7 @@ namespace FSA_3S.Migrations
                 name: "appointment");
 
             migrationBuilder.DropTable(
-                name: "notification");
+                name: "Notifications");
 
             migrationBuilder.DropTable(
                 name: "realestate");
