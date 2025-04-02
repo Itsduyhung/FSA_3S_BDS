@@ -192,8 +192,6 @@ namespace FSA_3S.Services.Service
             await _repository.UpdateApprovalStatusAsync(map);
             return response;
         }
-
-
         public async Task<IEnumerable<MappingUserAppointmentResponse>> GetAllMappingsApprovalStatusAsync()
         {
             var mappings = await _repository.GetAllAsync();
