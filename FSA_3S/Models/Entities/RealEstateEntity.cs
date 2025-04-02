@@ -25,6 +25,11 @@ namespace FSA_3S.Models.Entities
         [Column("status")]
         [StringLength(20)]
         public RealEstateStatusEnum RealEstateStatus { get; set; }
+
+        //[Required]
+        //[Column("propertystatus")]
+        //[StringLength(20)]
+        //public PropertyStatusEnum PropertyStatus { get; set; }
         
         [Column("approval")]
         [StringLength(20)]

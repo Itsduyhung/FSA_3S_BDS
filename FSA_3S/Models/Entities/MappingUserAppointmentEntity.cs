@@ -32,11 +32,9 @@ namespace FSA_3S.Models.Entities
         public UserEntity? Updater { get; set; } 
 
         [Column("createdAt")]
-        public DateTime CreatedAt { get; set; }  // Thời gian tạo
+        public DateTime CreatedAt { get; set; }
 
         [Column("updatedAt")]
-        public DateTime UpdatedAt { get; set; }  // Thời gian cập nhật
-
-
+        public DateTime UpdatedAt { get; set; }
     }
 }

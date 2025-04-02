@@ -28,6 +28,12 @@ namespace FSA_3S.Services.Service
             int createdBy = UserIdHelper.GetUserId(_httpContextAccessor)
                              ?? throw new UnauthorizedAccessException("Invalid or missing user ID.");
 
+            if (request.RealEstateStatus != RealEstateStatusEnum.Available &&
+    request.RealEstateStatus != RealEstateStatusEnum.ForRent)
+            {
+                throw new ArgumentException("RealEstateStatus không hợp lệ.");
+            }
+
             string? imageUrl = null;
             if (request.ImagePath != null)
             {
@@ -38,7 +44,8 @@ namespace FSA_3S.Services.Service
             {
                 RealEstateName = request.RealEstateName,
                 RealEstateType = request.RealEstateType,
-                RealEstateStatus = RealEstateStatusEnum.Waiting_for_approval,
+                ApprovalStatus = ApprovalStatusEnum.Waiting_for_approval,
+                RealEstateStatus = request.RealEstateStatus,
                 Price = request.Price,
                 Seller = request.Seller,
                 SaleDate = request.SaleDate,
@@ -92,15 +99,13 @@ namespace FSA_3S.Services.Service
                     await _hubContext.Clients.User(adminId.ToString()).SendAsync("ReceiveNotification", "Bất động sản mới", message);
                 }
             }
-
-            
-
             return new RealEstateRespone
             {
                 RealEstateId = realEstate.RealEstateId,
                 RealEstateName = realEstate.RealEstateName,
                 RealEstateType = realEstate.RealEstateType,
-                RealEstateStatus = RealEstateStatusEnum.Waiting_for_approval,
+                ApprovalStatus = ApprovalStatusEnum.Waiting_for_approval,
+                RealEstateStatus = realEstate.RealEstateStatus,
                 Price = realEstate.Price,
                 Seller = realEstate.Seller,
                 Coordinate = realEstate.Coordinate,
@@ -114,7 +119,6 @@ namespace FSA_3S.Services.Service
                 UpdatedAt = realEstate.UpdatedAt
             };
         }
-
         public async Task<RealEstateEntity?> GetByIdAsync(int id)
         {
             return await _realestaterepository.GetByIdAsync(id);
@@ -133,6 +137,7 @@ namespace FSA_3S.Services.Service
                 RealEstateId = r.RealEstateId,
                 RealEstateName = r.RealEstateName,
                 RealEstateType = r.RealEstateType,
+                ApprovalStatus = r.ApprovalStatus,
                 RealEstateStatus = r.RealEstateStatus,
                 Price = r.Price,
                 Seller = r.Seller,
@@ -161,10 +166,10 @@ namespace FSA_3S.Services.Service
             var updatedBy = UserIdHelper.GetUserId(_httpContextAccessor) ?? throw new UnauthorizedAccessException("Invalid or missing user ID.");
 
             // Kiểm tra trạng thái chờ phê duyệt và cập nhật trạng thái
-            if (realEstate.RealEstateStatus == RealEstateStatusEnum.Waiting_for_approval)
+            if (realEstate.ApprovalStatus == ApprovalStatusEnum.Waiting_for_approval)
             {
                 // Chỉ thực hiện khi Admin thay đổi trạng thái thành Approve hoặc Reject
-                if (request.RealEstateStatus == RealEstateStatusEnum.Approve || request.RealEstateStatus == RealEstateStatusEnum.Reject)
+                if (request.ApprovalStatus == ApprovalStatusEnum.Approve || request.ApprovalStatus == ApprovalStatusEnum.Reject)
                 {
                     // Cập nhật trạng thái khi Admin duyệt hoặc từ chối
                     realEstate.RealEstateStatus = request.RealEstateStatus;
@@ -187,6 +192,7 @@ namespace FSA_3S.Services.Service
             // Cập nhật các trường còn lại
             realEstate.RealEstateName = request.RealEstateName;
             realEstate.RealEstateType = request.RealEstateType;
+            realEstate.RealEstateStatus = request.RealEstateStatus;
             realEstate.Price = request.Price;
             realEstate.Seller = request.Seller;
             realEstate.SaleDate = request.SaleDate;
@@ -223,6 +229,7 @@ namespace FSA_3S.Services.Service
                 RealEstateId = realEstate.RealEstateId,
                 RealEstateName = realEstate.RealEstateName,
                 RealEstateType = realEstate.RealEstateType,
+                ApprovalStatus = realEstate.ApprovalStatus,
                 RealEstateStatus = realEstate.RealEstateStatus,
                 Price = realEstate.Price,
                 Seller = realEstate.Seller,

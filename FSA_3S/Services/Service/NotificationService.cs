@@ -5,16 +5,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FSA_3S.Services.Service
 {
-    public class NotificationService : INotificationService
+    public class NotificationService(AppDbContext context) : INotificationService
     {
-        private readonly AppDbContext _context;
+        private readonly AppDbContext _context = context;
 
-        public NotificationService(AppDbContext context)
-        {
-            _context = context;
-        }
-
-        // ✅ Lấy danh sách thông báo của người dùng
         public async Task<List<NotificationEntity>> GetNotificationsByUserIdAsync(int userId)
         {
             return await _context.Notifications
@@ -23,7 +17,6 @@ namespace FSA_3S.Services.Service
                 .ToListAsync();
         }
 
-        // ✅ Xóa thông báo theo ID
         public async Task<bool> DeleteNotificationAsync(int notificationId)
         {
             var notification = await _context.Notifications.FindAsync(notificationId);
@@ -34,7 +27,6 @@ namespace FSA_3S.Services.Service
             return true;
         }
 
-        // ✅ Cập nhật trạng thái thông báo (Read/Unread)
         public async Task<bool> UpdateNotificationStatusAsync(int notificationId, string status)
         {
             var notification = await _context.Notifications.FindAsync(notificationId);
@@ -45,7 +37,6 @@ namespace FSA_3S.Services.Service
             return true;
         }
 
-        // ✅ Gửi thông báo khi có bài đăng mới
         public async Task NotificationPostRealAsync(int senderId, int receiverId, string title, string message)
         {
             var notification = new NotificationEntity
@@ -62,7 +53,6 @@ namespace FSA_3S.Services.Service
             await _context.SaveChangesAsync();
         }
 
-        // ✅ Gửi thông báo khi cập nhật bài đăng
         public async Task NotificationPutRealAsync(int senderId, int receiverId, string title, string message)
         {
             var notification = new NotificationEntity

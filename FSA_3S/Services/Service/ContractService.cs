@@ -312,7 +312,6 @@ namespace FSA_3S.Services.Service
 
             return true;
         }
-
         public async Task<List<int>> GetDeletedContractsAsync()
         {
             return await _contractRepository.GetDeletedContractIdsAsync();

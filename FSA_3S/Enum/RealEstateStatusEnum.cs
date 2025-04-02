@@ -2,9 +2,9 @@
 {
     public enum RealEstateStatusEnum
     {
-        Waiting_for_approval,
-        Approve,
-        Reject,
-        Pending
+        Available = 1,
+        Sold = 2,
+        ForRent = 3, // chưa cho thuê
+        Rented = 4, // đã cho thuê
     }
 }
